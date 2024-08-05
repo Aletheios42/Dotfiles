@@ -1,0 +1,214 @@
+
+### Funcionalidades Básicas
+- **Sintaxis de Colores**: Neovim soporta la coloración de sintaxis para Markdown de manera nativa. Puedes asegurarte de tenerlo habilitado con:
+  
+  syntax on
+  
+
+- **Plegado de Código**: Puedes plegar secciones de un documento Markdown, como encabezados, listas, etc.
+  
+  set foldmethod=syntax
+  
+
+### Plugins Recomendados para Markdown
+1. **`plasticboy/vim-markdown`**: Mejora la experiencia de edición de Markdown con resaltado de sintaxis, plegado de encabezados y otras características.
+   - Instalación con Vim-Plug:
+     
+     Plug 'plasticboy/vim-markdown'
+     
+   - Configuración de ejemplo:
+   
+Sí, Neovim puede utilizarse para editar archivos Markdown, y existen varios plugins y configuraciones que pueden mejorar la experiencia de trabajar con Markdown en Neovim. Aquí tienes algunas de las funcionalidades y herramientas que puedes configurar:
+
+### Funcionalidades Básicas
+- **Sintaxis de Colores**: Neovim soporta la coloración de sintaxis para Markdown de manera nativa. Puedes asegurarte de tenerlo habilitado con:
+  
+  syntax on
+  
+
+- **Plegado de Código**: Puedes plegar secciones de un documento Markdown, como encabezados, listas, etc.
+  
+  set foldmethod=syntax
+  
+
+### Plugins Recomendados para Markdown
+1. **`plasticboy/vim-markdown`**: Mejora la experiencia de edición de Markdown con resaltado de sintaxis, plegado de encabezados y otras características.
+   - Instalación con Vim-Plug:
+     
+     Plug 'plasticboy/vim-markdown'
+     
+   - Configuración de ejemplo:
+     
+     let g:vim_markdown_folding_disabled = 1
+     let g:vim_markdown_conceal = 0
+     
+
+2. **`preservim/vim-markdown`**: Otro plugin popular que proporciona características avanzadas para Markdown, como la generación de tablas de contenido.
+   - Instalación con Vim-Plug:
+     
+     Plug 'preservim/vim-markdown'
+     
+
+3. **`iamcco/markdown-preview.nvim`**: Permite previsualizar archivos Markdown en el navegador.
+   - Instalación con Vim-Plug:
+     
+     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
+     
+   - Uso:
+     - Ejecuta `:MarkdownPreview` para abrir una vista previa en el navegador.
+
+4. **`junegunn/goyo.vim`** y **`junegunn/limelight.vim`**: Estos plugins se pueden utilizar para mejorar la concentración durante la edición de texto largo.
+   - Instalación con Vim-Plug:
+     
+     Plug 'junegunn/goyo.vim'
+     Plug 'junegunn/limelight.vim'
+     
+   - Uso:
+     - `:Goyo` para entrar en modo enfoque.
+     - `:Limelight` para resaltar el párrafo actual.
+
+### Configuraciones Útiles
+- **Resaltar Sintaxis**:
+  
+  syntax on
+  
+
+- **Plegado por Sintaxis**:
+  
+  set foldmethod=syntax
+  
+
+- **Mostrar Líneas de hasta 80 caracteres**:
+  
+  set colorcolumn=80
+  
+
+### Neovim Atajos de Teclado y Macros
+
+#### Navegación y Exploración de Archivos
+- **Explorador de Archivos (`nvim-tree`)**:
+  - `<leader>pv` - Abrir `nvim-tree`
+
+#### Búsqueda y Navegación (`telescope`)
+- **Telescope**:
+  - `<leader>ff` - Buscar archivos
+  - `<leader>fg` - Buscar texto
+  - `<leader>fb` - Buscar buffers
+  - `<leader>fh` - Buscar ayuda
+
+#### Edición y Movimiento
+- **Mover líneas en modo visual**:
+  - `J` - Mueve línea seleccionada hacia abajo
+  - `K` - Mueve línea seleccionada hacia arriba
+- **Juntar líneas**: `J`
+- **Mover media página**: `<C-d>` (abajo), `<C-u>` (arriba)
+- **Buscar siguiente coincidencia**: `n`, `N` (inverso)
+- **Eliminar y pegar**:
+  - `<leader>p` - Pegar sin sobreescribir registro de yank
+  - `<leader>y` - Yank al portapapeles
+  - `<leader>d` - Eliminar sin guardar en registro
+- **Cancelar resaltado**: `<leader>h`
+
+#### LSP y Funciones Avanzadas
+- **LSP**:
+  - `gd` - Ir a definición
+  - `K` - Documentación flotante
+  - `<leader>vws` - Buscar símbolo en el workspace
+  - `<leader>vd` - Mostrar diagnóstico flotante
+  - `<leader>vca` - Acción de código
+  - `<leader>vrr` - Referencias
+  - `<leader>vrn` - Renombrar
+  - `[d`, `]d` - Ir al siguiente/anterior diagnóstico
+
+- **Otras Funciones**:
+  - `<leader>x` - Hacer ejecutable el archivo actual
+  - `<leader>ee` - Insertar manejo de errores en Go
+  - `<leader>mr` - Iniciar "CellularAutomaton make_it_rain"
+
+     
+     let g:vim_markdown_folding_disabled = 1
+     let g:vim_markdown_conceal = 0
+     
+
+2. **`preservim/vim-markdown`**: Otro plugin popular que proporciona características avanzadas para Markdown, como la generación de tablas de contenido.
+   - Instalación con Vim-Plug:
+     
+     Plug 'preservim/vim-markdown'
+     
+
+3. **`iamcco/markdown-preview.nvim`**: Permite previsualizar archivos Markdown en el navegador.
+   - Instalación con Vim-Plug:
+     
+     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
+     
+   - Uso:
+     - Ejecuta `:MarkdownPreview` para abrir una vista previa en el navegador.
+
+4. **`junegunn/goyo.vim`** y **`junegunn/limelight.vim`**: Estos plugins se pueden utilizar para mejorar la concentración durante la edición de texto largo.
+   - Instalación con Vim-Plug:
+     
+     Plug 'junegunn/goyo.vim'
+     Plug 'junegunn/limelight.vim'
+     
+   - Uso:
+     - `:Goyo` para entrar en modo enfoque.
+     - `:Limelight` para resaltar el párrafo actual.
+
+### Configuraciones Útiles
+- **Resaltar Sintaxis**:
+  
+  syntax on
+  
+
+- **Plegado por Sintaxis**:
+  
+  set foldmethod=syntax
+  
+
+- **Mostrar Líneas de hasta 80 caracteres**:
+  
+  set colorcolumn=80
+  
+
+### Neovim Atajos de Teclado y Macros
+
+#### Navegación y Exploración de Archivos
+- **Explorador de Archivos (`nvim-tree`)**:
+  - `<leader>pv` - Abrir `nvim-tree`
+
+#### Búsqueda y Navegación (`telescope`)
+- **Telescope**:
+  - `<leader>ff` - Buscar archivos
+  - `<leader>fg` - Buscar texto
+  - `<leader>fb` - Buscar buffers
+  - `<leader>fh` - Buscar ayuda
+
+#### Edición y Movimiento
+- **Mover líneas en modo visual**:
+  - `J` - Mueve línea seleccionada hacia abajo
+  - `K` - Mueve línea seleccionada hacia arriba
+- **Juntar líneas**: `J`
+- **Mover media página**: `<C-d>` (abajo), `<C-u>` (arriba)
+- **Buscar siguiente coincidencia**: `n`, `N` (inverso)
+- **Eliminar y pegar**:
+  - `<leader>p` - Pegar sin sobreescribir registro de yank
+  - `<leader>y` - Yank al portapapeles
+  - `<leader>d` - Eliminar sin guardar en registro
+- **Cancelar resaltado**: `<leader>h`
+
+#### LSP y Funciones Avanzadas
+- **LSP**:
+  - `gd` - Ir a definición
+  - `K` - Documentación flotante
+  - `<leader>vws` - Buscar símbolo en el workspace
+  - `<leader>vd` - Mostrar diagnóstico flotante
+  - `<leader>vca` - Acción de código
+  - `<leader>vrr` - Referencias
+  - `<leader>vrn` - Renombrar
+  - `[d`, `]d` - Ir al siguiente/anterior diagnóstico
+
+- **Otras Funciones**:
+  - `<leader>x` - Hacer ejecutable el archivo actual
+  - `<leader>ee` - Insertar manejo de errores en Go
+  - `<leader>mr` - Iniciar "CellularAutomaton make_it_rain"
+
