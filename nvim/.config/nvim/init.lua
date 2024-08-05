@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-    spec = "theprimeagen.lazy",
-    change_detection = { notify = false }
-})
+require("vim-remmaping")
+require("vim-options")
+require("lazy").setup("plugins")
+

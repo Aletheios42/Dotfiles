@@ -1,5 +1,11 @@
-vim.opt.guicursor = ""
+vim.cmd("set expandtab")
+vim.cmd("set tabstop=2")
+vim.cmd("set softtabstop=2")
+vim.cmd("set shiftwidth=2")
+vim.g.mapleader = " "
+vim.g.background = "light"
 
+vim.opt.swapfile = false
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -29,4 +35,8 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
 
