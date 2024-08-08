@@ -1,3 +1,4 @@
+-- carga formates de caracter general (muchos lenguajes)
 return {
   {
     "williamboman/mason.nvim",

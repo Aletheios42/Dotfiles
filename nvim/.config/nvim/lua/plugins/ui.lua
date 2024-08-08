@@ -1,3 +1,4 @@
+-- Para crear gran parte de la IU , son varios componentes, te los miras tontito
 return {
   {
     "lukas-reineke/virt-column.nvim",
@@ -5,7 +6,7 @@ return {
       char = { "┆" },
       virtcolumn = "80",
       highlight = { "NonText" },
-    }
+    },
   },
   {
     "folke/noice.nvim",

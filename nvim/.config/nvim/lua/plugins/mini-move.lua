@@ -1,3 +1,5 @@
+-- este plugin hace que en modo visual puedas mover lineas en bloque
+--
 return {
   "echasnovski/mini.move",
   event = "VeryLazy",

@@ -1,3 +1,5 @@
+-- Este plugin coge info de los LSP, lenguage Server Protocol
+--  si quieres alguno mas ponlo
 return {
   {
     "nvim-treesitter/nvim-treesitter",

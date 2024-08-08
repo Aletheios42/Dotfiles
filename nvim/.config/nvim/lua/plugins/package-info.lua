@@ -1,3 +1,4 @@
+-- Paa ver los json de locos
 return {
   {
     "vuki656/package-info.nvim",

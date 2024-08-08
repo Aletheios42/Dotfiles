@@ -1,3 +1,4 @@
+-- Para poder navegar entre paneles de nvim y paneles de tmux
 return {
   "alexghergh/nvim-tmux-navigation",
   event = "VeryLazy",

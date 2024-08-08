@@ -1,3 +1,4 @@
+-- Este plugin el la barra de abajo del nvim, te da info del archivo
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
@@ -42,7 +43,7 @@ return {
               hint = icons.diagnostics.Hint,
             },
           },
-          { "filetype",                icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           { Util.lualine.pretty_path() },
           {
             require("package-info").get_status,

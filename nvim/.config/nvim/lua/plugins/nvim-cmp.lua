@@ -1,3 +1,4 @@
+--  es todo el autocompletado. tengo que entender porque no me pone el copitlot el primero
 return {
   {
     "hrsh7th/nvim-cmp",

@@ -1,3 +1,4 @@
+-- Este plugin es para el debugeo, todavia no lo he probado
 return {
   {
     "mfussenegger/nvim-dap",

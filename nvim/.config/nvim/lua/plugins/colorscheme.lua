@@ -1,3 +1,4 @@
+-- Este plugin es pura estetica
 return {
   {
     "scottmckendry/cyberdream.nvim",
