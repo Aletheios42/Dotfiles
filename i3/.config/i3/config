@@ -15,11 +15,10 @@ set $mod Mod4
 # set $mod Mod1
 
 exec --no-startup-id picom
-exec --no-startup-id feh --bg-scale ~/backgrounds/el-jardin-de-las-delicias.jpg
-# Iniciar el mapeo del teclado
-exec_always --no-startup-id setxkbmap es -option ctrl:nocaps
-exec --no-startup-id xmodmap ~/.Xmodmap
+exec --no-startup-id feh --bg-scale ~/Pictures/backgrounds/el-jardin-de-las-delicias.jpg
 
+# Iniciar el mapeo del teclado
+exec_always --no-startup-id setxkbmap es -option ctrl:swapcaps
 
 # kill any hanging polybar processes
 exec_always killall polybar
@@ -75,6 +74,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+space exec --no-startup-id rofi -show combi
 bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $mod+s exec --no-startup-id rofi -modi emoji -show emoji -emoji-fuzzy
+
 
 # change focus
 bindsym $mod+h focus left
@@ -104,8 +105,8 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+w layout stacking
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating

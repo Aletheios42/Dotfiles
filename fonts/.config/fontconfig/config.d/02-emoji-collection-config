@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <match>
+    <test name="family" qual="any">
+      <string>emoji</string>
+    </test>
+    <edit name="family" mode="prepend" binding="strong">
+      <string>Noto Color Emoji</string>
+      <string>JoyPixels</string>
+      <string>Twemoji</string>
+      <string>Nerd Fonts</string>
+    </edit>
+  </match>
+</fontconfig>
+
