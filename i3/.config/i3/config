@@ -14,6 +14,11 @@ for_window [class="^.*"] border pixel 1
 set $mod Mod4
 # set $mod Mod1
 
+# Para que el ordenador solo se apago cuando yo le diga
+[Sleep]
+SuspendMode=disable
+HibernateMode=disable
+
 exec --no-startup-id picom
 exec --no-startup-id feh --bg-scale ~/Pictures/backgrounds/el-jardin-de-las-delicias.jpg
 
