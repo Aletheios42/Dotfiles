@@ -1,0 +1,90 @@
+
+##************************************************************************
+##                            Neovim Controlers                             
+##************************************************************************
+
+leader = Space
+                        Menus
+-------------------------------------------
+leader -----> display vim.info
+g ----------> display goto menu
+< ----------> display indent menu 
+' ----------> display mark menu
+z ----------> display fold menu
+c ----------> display change menu
+v ----------> display visual menu 
+[ ----------> display prev menu
+] ----------> display next menu
+-------------------------------------------
+
+              panels and navigation
+-----------------------------------------
+split neovim panel vertical: ss
+split neovim panel horizontal: sv
+
+neotree hover file pop vertical split: Shitft + s
+neotree hover file pop horizontal split: s
+
+navigation between Nvim and tmux:  ModControl + h/j/k/l
+NeoTree: leader + e
+-----------------------------------------------
+
+
+go to definition: leader + g + d
+go to references: leader + g + r
+go to implementation: g + i
+
+autocomplete: ModControl + Leader
+rename variables: (cursor on variable)  leader + c + r
+
+search for a word: leader + s + g
+
+newtab = Leader + tab + tab
+navigate tabs forword = tab
+navigate tabs backwards = Shitft + Tab
+navigato to x tab = num + Tab
+_______________________________
+Lazy git
+_______________________________
+init lazygit: Leader + g + g
+
+file_hover stash: Leader
+file_hover discard changes: d
+file_hover commit: c
+file_hover push: Shitft + P
+file_hover pull: p
+
+branch_hover checkout: c
+branch_hover new branch: n
+branch_hover change branch: leader
+branch_hover see commits: enter
+_______________________________
+
+
+##************************************************************************
+##                             Tmux Controlers                              
+##************************************************************************
+
+prefix = ModControl + a;
+
+----------------------------------
+navigation between Nvmi and tmux:
+ModControl + h/j/k/l
+----------------------------------
+
+go to last windown in a seseion = prefix_on + l
+navigate between sesions/fzf too = prefix_On + s
+navigate between windows = prefix_On + num
+
+resize tmux panels = Alt + h/j/k/l
+
+tmux Ressurect:
+prefix_On + ModControl + s = save sesion;
+prefix_On + ModControl + r = resurrect sesion;
+
+
+##************************************************************************
+##                             Kitty Controlers                             
+##************************************************************************
+
+
