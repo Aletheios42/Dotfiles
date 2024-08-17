@@ -71,6 +71,8 @@ prefix = ModControl + a;
 navigation between Nvmi and tmux:
 ModControl + h/j/k/l
 ----------------------------------
+Copy: ModControl + Shift + c
+Paste: ModControl + Shift + v
 
 go to last windown in a seseion = prefix_on + l
 navigate between sesions/fzf too = prefix_On + s
