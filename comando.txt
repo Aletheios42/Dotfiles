@@ -34,7 +34,10 @@ go to definition: leader + g + d
 go to references: leader + g + r
 go to implementation: g + i
 
-autocomplete: ModControl + Leader
+autocomplete display: ModControl + Leader
+display_on autocomplate confirm: Enter
+display_on autocomplate navigate forward/backward: Control + n/p 
+
 rename variables: (cursor on variable)  leader + c + r
 
 search for a word: leader + s + g
