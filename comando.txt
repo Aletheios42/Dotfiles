@@ -30,6 +30,8 @@ NeoTree: leader + e
 -----------------------------------------------
 
 
+visual_on comentar/descomentar: g + c
+
 go to definition: leader + g + d
 go to references: leader + g + r
 go to implementation: g + i
@@ -92,4 +94,43 @@ prefix_On + ModControl + r = resurrect sesion;
 ##                             Kitty Controlers                             
 ##************************************************************************
 
+
+Ctrl + Y: Pegar lo que se cortó previamente con Ctrl + U, Ctrl + K, o Ctrl + W.
+Abrir una nueva pestaña: Ctrl+Shift+T (o personalizar en kitty.conf)
+Cerrar la pestaña actual: Ctrl+Shift+W (o personalizar en kitty.conf)
+Moverse entre pestañas: Ctrl+Tab para siguiente, Ctrl+Shift+Tab para anterior
+Cambiar a una pestaña específica: Ctrl+1 a Ctrl+9
+
+
+/**************************************************************************/
+/*                                  Bash                                  */
+/**************************************************************************/
+
+Movimiento del Cursor
+Ctrl + A: Mover el cursor al principio de la línea.
+Ctrl + E: Mover el cursor al final de la línea.
+Alt + F: Mover el cursor una palabra hacia adelante.
+Alt + B: Mover el cursor una palabra hacia atrás.
+Ctrl + L: Limpiar la pantalla y mover el cursor a la parte superior.
+
+Edición de Texto
+Ctrl + U: Borrar desde el cursor hasta el principio de la línea.
+Ctrl + K: Borrar desde el cursor hasta el final de la línea.
+Ctrl + W: Borrar la palabra anterior.
+Alt + D: Borrar la palabra siguiente al cursor.
+Ctrl + H: Borrar el carácter anterior (equivalente a la tecla Backspace).
+Ctrl + D: Borrar el carácter bajo el cursor (equivalente a la tecla Delete).
+
+Inserción y Reemplazo
+Ctrl + T: Intercambiar el carácter bajo el cursor con el carácter anterior.
+Alt + T: Intercambiar la palabra bajo el cursor con la palabra anterior.
+
+Historial
+Ctrl + P: Ver el comando anterior en el historial.
+Ctrl + N: Ver el siguiente comando en el historial.
+Alt + R: Buscar en el historial de comandos a partir del cursor.
+
+Otros
+Ctrl + C: Cancelar el comando actual y devolver el control al prompt.
+Ctrl + Z: Suspender el proceso en ejecución y devolver el control al prompt.
 

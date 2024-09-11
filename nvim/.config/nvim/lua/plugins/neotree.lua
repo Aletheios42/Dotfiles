@@ -12,6 +12,15 @@ return {
       position = "right",
       mappings = {
         ["Y"] = "none",
+        -- Agregar el mapeo 'b' para abrir archivos en un nuevo buffer
+        ["b"] = function(state)
+          local node = state.tree:get_node()
+          local filepath = node:get_id() -- Obtiene la ruta completa del archivo
+
+          -- Abre el archivo en un nuevo buffer
+          vim.cmd("badd " .. filepath)
+          vim.cmd("buffer " .. filepath) -- Cambia al buffer recién añadido
+        end,
       },
     },
     filesystem = {
@@ -28,3 +37,27 @@ return {
     },
   },
 }
+
+-- return {
+--   "nvim-neo-tree/neo-tree.nvim",
+--   opts = {
+--     window = {
+--       position = "right",
+--       mappings = {
+--         ["Y"] = "none",
+--       },
+--     },
+--     filesystem = {
+--       filtered_items = {
+--         hide_dotfiles = false,
+--         hide_by_name = {
+--           ".git",
+--           ".DS_Store",
+--         },
+--         always_show = {
+--           ".env",
+--         },
+--       },
+--     },
+--   },
+-- }

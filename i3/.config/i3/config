@@ -113,6 +113,13 @@ bindsym $mod+t layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
+# Partición vertical con Mod+Shift+n
+bindsym $mod+Shift+n split v
+
+# Partición horizontal con Mod+Shift+m
+bindsym $mod+Shift+m split h
+
+
 # focus the parent container
 bindsym $mod+p focus parent
 

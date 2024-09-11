@@ -1,4 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
+# Configuración global para aumentar el tiempo de espera de los comandos
+command_timeout = 10000  # Tiempo en milisegundos (10 segundos)
+
 
 format = """
 [](surface0)\
@@ -67,6 +70,7 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
+
 
 [os]
 disabled = false
