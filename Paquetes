@@ -1,3 +1,9 @@
+
+
+/*****************************************************/
+/*                     Paquetes                      */
+/*****************************************************/
+
 TLP
 Auto-cpufreq
 pacmanconf----> 5 threads enable
@@ -5,3 +11,19 @@ alsa
 nerdfonts
 Buildx(docker)
 
+/*****************************************************/
+/*                    Programas                      */
+/*****************************************************/
+
+picom
+rofi
+polibar(preferido)/i3
+nvim
+audacity
+gimp
+obs
+okular
+masterpdf
+lldb
+perf
+valgrind

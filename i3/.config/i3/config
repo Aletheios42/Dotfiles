@@ -16,6 +16,7 @@ set $mod Mod4
 
 exec --no-startup-id picom
 exec --no-startup-id feh --bg-scale ~/Pictures/Backgrounds/el-jardin-de-las-delicias.jpg
+
 # Iniciar el mapeo del teclado
 exec_always --no-startup-id setxkbmap es -option ctrl:swapcaps
 
@@ -23,10 +24,10 @@ exec_always --no-startup-id setxkbmap es -option ctrl:swapcaps
 exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
+
+# poner el programa de gnome screenshot
 # Guardar capturas de pantalla en el portapapeles (clipboard)
-bindsym Print exec maim | xclip -selection clipboard -t image/png
-bindsym $mod+Print exec maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Shift+Print exec maim --select | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id gnome-screenshot -i
 
 # Guardar capturas de pantalla en Pictures/screenshots
 bindsym Ctrl+Print exec maim "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
