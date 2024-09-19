@@ -11,6 +11,7 @@ alsa
 nerdfonts
 Buildx(docker)
 
+
 /*****************************************************/
 /*                    Programas                      */
 /*****************************************************/
@@ -22,6 +23,7 @@ nvim
 audacity
 gimp
 obs
+notify-send
 okular
 masterpdf
 lldb
