@@ -30,9 +30,12 @@ exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 bindsym Print exec --no-startup-id gnome-screenshot -i
 
 # Guardar capturas de pantalla en Pictures/screenshots
-bindsym Ctrl+Print exec maim "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
+# For selection the area to be screenshot
+bindsym Ctrl+Print exec maim --select "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
+# For selection the window to be screenshot
 bindsym Ctrl+$mod+Print exec maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
-bindsym Ctrl+Shift+Print exec maim --select "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
+# For selection the whole screen to be screenshot
+bindsym Ctrl+Shift+Print exec maim "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
 
 
 
