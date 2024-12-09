@@ -37,6 +37,8 @@ bindsym Ctrl+$mod+Print exec maim --window $(xdotool getactivewindow) "/home/$US
 # For selection the whole screen to be screenshot
 bindsym Ctrl+Shift+Print exec maim "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
 
+# # Para lockear la pantalla
+ bindsym $mod+Shift+b exec i3lock
 
 
 # Font for window titles. Will also be used by the bar unless a different font
