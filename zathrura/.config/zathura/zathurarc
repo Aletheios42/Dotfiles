@@ -1,0 +1,28 @@
+# Habilitar desplazamiento suave
+set smooth-scroll true
+
+# Iniciar en modo de ajuste a la ventana
+set adjust-open width
+
+# Ocultar la barra de herramientas
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+
+# Definir color de fondo y texto (modo oscuro)
+set recolor true
+set recolor-keephue true
+set default-bg "#282828"  # Fondo oscuro
+set default-fg "#ebdbb2"  # Texto en color claro
+
+# Definir navegación con el teclado estilo Vim
+map j scroll down
+map k scroll up
+map h scroll left
+map l scroll right
+map gg navigate top
+map G navigate bottom
+
+# Ajustar zoom
+map + zoom in
+map - zoom out
+

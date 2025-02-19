@@ -1,5 +1,3 @@
-
-
 /*****************************************************/
 /*                     Paquetes                      */
 /*****************************************************/
@@ -10,22 +8,19 @@ pacmanconf----> 5 threads enable
 alsa
 nerdfonts
 Buildx(docker)
-
-
 /*****************************************************/
 /*                    Programas                      */
 /*****************************************************/
 
 picom
 rofi
-polibar(preferido)/i3
 nvim
 audacity
 gimp
 obs
 notify-send
 okular
-masterpdf
+zathrura
 lldb
 perf
 valgrind

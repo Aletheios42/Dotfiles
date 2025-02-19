@@ -38,7 +38,7 @@ local set_keymap = vim.api.nvim_set_keymap
 
 -- Split windows
 keymap.set("n", "sv", ":vsplit<Return>", opts)
-keymap.set("n", "ss", ":split<Return>", opts)
+keymap.set("n", "sn", ":split<Return>", opts)
 
 -- Tabs
 keymap.set("n", "te", ":tabedit", opts)

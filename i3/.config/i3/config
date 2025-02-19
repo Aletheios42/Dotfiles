@@ -9,20 +9,13 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 set $mod Mod4
 # set $mod Mod1
 
 exec --no-startup-id picom
 exec --no-startup-id feh --bg-scale ~/Pictures/Backgrounds/el-jardin-de-las-delicias.jpg
-
-# Iniciar el mapeo del teclado
-exec_always --no-startup-id setxkbmap es -option ctrl:swapcaps
-
-# kill any hanging polybar processes
-exec_always killall polybar
-exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
 
 # poner el programa de gnome screenshot
@@ -38,7 +31,7 @@ bindsym Ctrl+$mod+Print exec maim --window $(xdotool getactivewindow) "/home/$US
 bindsym Ctrl+Shift+Print exec maim "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
 
 # # Para lockear la pantalla
- bindsym $mod+Shift+b exec i3lock
+bindsym $mod+Shift+b exec i3lock
 
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -67,7 +60,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -82,7 +74,6 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+space exec --no-startup-id rofi -show combi
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 bindsym $mod+s exec --no-startup-id rofi -modi emoji -show emoji -emoji-fuzzy
-
 
 # change focus
 bindsym $mod+h focus left
@@ -124,7 +115,6 @@ bindsym $mod+Shift+n split v
 
 # Partición horizontal con Mod+Shift+m
 bindsym $mod+Shift+m split h
-
 
 # focus the parent container
 bindsym $mod+p focus parent
@@ -199,9 +189,17 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
+
+ # Ajuste proporcional de la ventana
+        bindsym plus resize grow width 5 ppt; resize grow height 5 ppt
+        bindsym minus resize shrink width 5 ppt; resize shrink height 5 ppt
+
 }
 
 bindsym $mod+r mode "resize"
+bar {
+    status_command i3status
+}
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
