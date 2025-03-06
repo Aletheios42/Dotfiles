@@ -8,6 +8,7 @@ pacmanconf----> 5 threads enable
 alsa
 nerdfonts
 Buildx(docker)
+
 /*****************************************************/
 /*                    Programas                      */
 /*****************************************************/
@@ -15,13 +16,15 @@ Buildx(docker)
 picom
 rofi
 nvim
+tmux
 audacity
 gimp
 obs
+pylote
 notify-send
 okular
 zathrura
 lldb
 perf
 valgrind
-screenshot-gnome
+tldr
