@@ -8,15 +8,21 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# finds out, if available)
 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
+# gaps between windows
+gaps inner 4
+gaps outer 2
+smart_gaps on
+# hide_edge_borders both
+
 
 set $mod Mod4
 # set $mod Mod1
 
 exec --no-startup-id picom
 exec --no-startup-id feh --bg-scale ~/Pictures/Backgrounds/el-jardin-de-las-delicias.jpg
-exec --no-startup-id gromit-mpx
 
 
 # poner el programa de gnome screenshot
@@ -160,6 +166,10 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# Switch container position in a workspace
+bindsym $mod+Shift+comma move workspace to output left 
+bindsym $mod+Shift+period move workspace to output right
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -198,12 +208,15 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
 bar {
     status_command i3status
 }
 
-# Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
+
 
 set $rosewater #f5e0dc
 set $flamingo  #f2cdcd
@@ -239,6 +252,3 @@ client.unfocused         $overlay0 $base  $text    $rosewater $overlay0
 client.urgent            $peach    $base  $peach   $overlay0  $peach
 client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
 client.background        $base
-
-
-
