@@ -8,6 +8,7 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
 # finds out, if available)
 
 for_window [class="^.*"] border pixel 2

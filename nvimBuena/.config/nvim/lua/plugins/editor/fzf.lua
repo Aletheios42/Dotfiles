@@ -150,6 +150,18 @@ return {
       vim.keymap.set('n', 'gI', '<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>', { desc = "Goto Implementation" })
       -- stylua: ignore
       vim.keymap.set('n', 'gy', '<cmd>FzfLua lsp_typedefs        jump_to_single_result=true ignore_current_line=true<cr>', { desc = "Goto Type Definitions" })
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        callback = function(ev)
+          local opts = { buffer = ev.buf }
+          vim.keymap.set(
+            'n',
+            'gd',
+            require('telescope.builtin').lsp_definitions,
+            opts
+          )
+        end,
+      })
     end,
   },
 }
