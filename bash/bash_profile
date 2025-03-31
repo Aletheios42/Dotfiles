@@ -1,0 +1,70 @@
+#
+# ~/.bash_profile
+#
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+# ~/.bash_profile: executed by bash for login shells
+
+# Load system-wide profile if it exists
+if [ -f /etc/profile ]; then
+    source /etc/profile
+fi
+
+# Set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Define environment variables
+export EDITOR="nvim"
+export VISUAL="nvim"
+export PAGER="less"
+export LANG="es_ES.UTF-8"
+export LC_ALL="es_ES.UTF-8"
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTCONTROL=ignoreboth:erasedups
+
+# Programming language environments
+# Go
+if [ -d "$HOME/go" ]; then
+    export GOPATH="$HOME/go"
+    PATH="$GOPATH/bin:$PATH"
+fi
+
+# Node.js (nvm)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Python (pyenv)
+if command -v pyenv 1>/dev/null 2>&1; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+
+# Ruby (rbenv)
+if command -v rbenv 1>/dev/null 2>&1; then
+    eval "$(rbenv init -)"
+fi
+
+# Source .bashrc for login shells too
+if [ -f "$HOME/.bashrc" ]; then
+    source "$HOME/.bashrc"
+fi
+
+# Start SSH agent if not running
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null
+fi
+
+# Display system information on login (optional)
+if command -v neofetch 1>/dev/null 2>&1; then
+    neofetch
+elif command -v screenfetch 1>/dev/null 2>&1; then
+    screenfetch
+fi
