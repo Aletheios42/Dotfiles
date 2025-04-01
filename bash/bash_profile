@@ -27,8 +27,7 @@ export LANG="es_ES.UTF-8"
 export LC_ALL="es_ES.UTF-8"
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-export HISTCONTROL=ignoreboth:erasedups
-
+export HISTCONTROL=ignoreboth
 # Programming language environments
 # Go
 if [ -d "$HOME/go" ]; then

@@ -97,3 +97,7 @@ setConf() {
   
   echo "¡Completado!"
 }
+
+nboat() {
+  tmux split-pane -h \; resize-pane -x 250\; send -t 2 "newsboat -r" Enter\; send -t 1 "clear" Enter
+}

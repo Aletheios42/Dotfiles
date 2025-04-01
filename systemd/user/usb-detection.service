@@ -1,0 +1,14 @@
+[Unit]
+Description=Monitor USB devices with udevadm
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c 'udevadm monitor --udev | grep --line-buffered "add.*block" | while read line; do sleep 2; %h/bin/mount-dmenu.sh; done'
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=%h/.Xauthority
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target

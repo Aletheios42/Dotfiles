@@ -89,7 +89,8 @@ bindsym $mod+space exec --no-startup-id dmenu_run
 # Cambiar entre ventanas (equivalente a rofi -show window)
 bindsym $mod+Tab exec --no-startup-id 'wmctrl -l | awk "{$1=$2=$3=\"\"; print $0}" | sed "s/^[ \t]*//" | dmenu -i | xargs -I{} wmctrl -a {}'
 # Selector de emojis (equivalente a rofi -modi emoji)
-bindsym $mod+s exec --no-startup-id ~/Code/dmenu-emoji/dmenu-emoji.sh
+bindsym $mod+s exec --no-startup-id dmenu-emoji
+
 # Demonio de notificaciones
 exec --no-startup-id dunst
 
@@ -129,10 +130,10 @@ bindsym $mod+t layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # Partición vertical con Mod+Shift+n
-bindsym $mod+Shift+n split v
+bindsym $mod+v split v
 
 # Partición horizontal con Mod+Shift+m
-bindsym $mod+Shift+m split h
+bindsym $mod+b split h
 
 # focus the parent container
 bindsym $mod+p focus parent
