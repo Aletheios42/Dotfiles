@@ -32,8 +32,11 @@ alias reload='source ~/.bashrc'
 
 ## PATH
 
-export SECONDBRAIN="$HOME/SecondBrain"
 export DOTFILES="$HOME/Dotfiles/"
+export CONFIG="$HOME/.config/"
+
+export SECONDBRAIN="$HOME/SecondBrain"
+
 export SB_FUNC_PATH="$DOTFILES/bash/sb_functions"
 
 export GITHUB="https://github.com/Aletheios42"
