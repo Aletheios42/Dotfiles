@@ -29,6 +29,7 @@ alias reload='source ~/.bashrc'
 
 
 ## Exports
+export EDITOR="nvim"
 
 ## PATH
 

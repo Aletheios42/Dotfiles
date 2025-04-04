@@ -1,8 +1,5 @@
 -- https://github.com/HakonHarnes/img-clip.nvim
 
--- Filename: ~/github/dotfiles-latest/neovim/neobean/lua/plugins/img-clip.lua
--- ~/github/dotfiles-latest/neovim/neobean/lua/plugins/img-clip.lua
-
 return {
   "HakonHarnes/img-clip.nvim",
   event = "VeryLazy",
@@ -22,7 +19,7 @@ return {
       -- if I switch to a nother computer and I have a different username,
       -- therefore a different home directory, that's a problem because the
       -- absolute paths will be pointing to a different directory
-      use_absolute_path = false, ---@type boolean
+      use_absolute_path = true, ---@type boolean
 
       -- make dir_path relative to current file rather than the cwd
       -- To see your current working directory run `:pwd`
@@ -92,26 +89,6 @@ return {
       markdown = {
         -- encode spaces and special characters in file path
         url_encode_path = true, ---@type boolean
-
-        -- -- The template is what specifies how the alternative text and path
-        -- -- of the image will appear in your file
-        --
-        -- -- $CURSOR will paste the image and place your cursor in that part so
-        -- -- you can type the "alternative text", keep in mind that this will
-        -- -- not affect the name that the image physically has
-        -- template = "![$CURSOR]($FILE_PATH)", ---@type string
-        --
-        -- -- This will just statically type "Image" in the alternative text
-        -- template = "![Image]($FILE_PATH)", ---@type string
-        -- Conditional template for skitty mode
-        -- template = vim.g.neovim_mode == "skitty" and "![i]($FILE_PATH)" or "![Image]($FILE_PATH)",
-        --
-        --
-        -- -- This will dynamically configure the alternative text to show the
-        -- -- same that you configured as the "file_name" above
-        -- -- I really don't need to see the entire filename in the alternative
-        -- -- text field, so just switched it to show "Image"
-        -- template = "![$FILE_NAME]($FILE_PATH)", ---@type string
       },
     },
   },

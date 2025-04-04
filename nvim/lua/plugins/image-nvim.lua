@@ -30,9 +30,6 @@ return {
             -- I set this to true, because if the file has way too many images
             -- it will be laggy and will take time for the initial load
             -- only_render_image_at_cursor = true,
-            only_render_image_at_cursor = vim.g.neovim_mode == "skitty" and false or true,
-            -- markdown extensions (ie. quarto) can go here
-            filetypes = { "markdown", "vimwiki", "html" },
           },
           neorg = {
             enabled = true,
