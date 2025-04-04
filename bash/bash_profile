@@ -10,6 +10,12 @@ if [ -f /etc/profile ]; then
     source /etc/profile
 fi
 
+# En ~/.bash_profile o ~/.profile
+if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec startx
+fi
+
+
 # Set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
