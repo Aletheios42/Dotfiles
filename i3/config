@@ -31,17 +31,16 @@ exec --no-startup-id clipmenud
 # Atajo para acceder al historial del portapapeles
 bindsym $mod+c exec --no-startup-id clipmenu
 
-# poner el programa de gnome screenshot
-# Guardar capturas de pantalla en el portapapeles (clipboard)
-bindsym Print exec --no-startup-id gnome-screenshot -i
 
-# Guardar capturas de pantalla en Pictures/screenshots
-# For selection the area to be screenshot
-bindsym Ctrl+Print exec maim --select "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
-# For selection the window to be screenshot
-bindsym Ctrl+$mod+Print exec maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
-# For selection the whole screen to be screenshot
-bindsym Ctrl+Shift+Print exec maim "/home/$USER/Pictures/Screenshots/$(date '+%Y-%m-%d_%H-%M-%S').jpg"
+# Configuración de capturas de pantalla con scrot
+
+# Captura de área seleccionada - Print
+bindsym Print exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S_selection.png' -s -e 'mv $f ~/Imagenes/Capturas/'
+# Captura de pantalla completa - Shift+Print
+bindsym Shift+Print exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Imagenes/Capturas/'
+# Captura de ventana activa - Alt+Print
+bindsym Mod1+Print exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S_window.png' -u -e 'mv $f ~/Imagenes/Capturas/'
+
 
 # # Para lockear la pantalla
 bindsym $mod+Shift+b exec i3lock

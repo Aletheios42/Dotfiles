@@ -12,7 +12,6 @@
 # Prompt minimalista y atractivo
 PS1='\[\e[0;36m\]\u\[\e[0m\] \[\e[0;32m\]\w\[\e[0m\] \[\e[0;35m\]>\[\e[0m\] '
 
-
 bind -x '"\C-p":clear'
 
 ## ALIAS
@@ -26,15 +25,16 @@ alias clip='xclip -selection clipboard'
 alias bashrc='nvim ~/.bashrc'
 # Reload bashrc
 alias reload='source ~/.bashrc'
-
+alias vimrc='vim $VIMRC'
 
 ## Exports
 export EDITOR="nvim"
 
 ## PATH
-
+export VIMRC="$DOTFILES/vim/vimrc"
 export DOTFILES="$HOME/Dotfiles/"
 export CONFIG="$HOME/.config/"
+export CAPTURAS="$HOME/Imagenes/Capturas/"
 
 export SECONDBRAIN="$HOME/SecondBrain"
 
@@ -45,9 +45,9 @@ export DOCKERHUB="https://hub.docker.com/repositories/alejandropintosdev"
 
 # Load Second Brain functions
 if [ -f "$SB_FUNC_PATH" ]; then
-    source "$SB_FUNC_PATH"
-  else
-    echo "Warning: Second Brain functions file not found at $SB_FUNC_PATH"
+  source "$SB_FUNC_PATH"
+else
+  echo "Warning: Second Brain functions file not found at $SB_FUNC_PATH"
 fi
 
 # General bash functions
@@ -55,7 +55,5 @@ export BASH_FUNC_PATH="$DOTFILES/bash/bash_functions"
 
 # Load general functions
 if [ -f "$BASH_FUNC_PATH" ]; then
-    source "$BASH_FUNC_PATH"
+  source "$BASH_FUNC_PATH"
 fi
-
-
