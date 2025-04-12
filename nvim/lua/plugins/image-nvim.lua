@@ -2,7 +2,7 @@ return {
   {
     -- https://github.com/vhyrro/luarocks.nvim
     "vhyrro/luarocks.nvim",
-    enabled = false,
+    enabled = true,
     -- this plugin needs to run before anything else
     priority = 1001,
     opts = {
@@ -11,7 +11,7 @@ return {
   },
   {
     "3rd/image.nvim",
-    enabled = false,
+    enabled = true,
     dependencies = { "luarocks.nvim" },
     config = function()
       require("image").setup({

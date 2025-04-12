@@ -5,34 +5,7 @@ zz() {
   local selected_file
   selected_file=$(find . -type f -not -path "*/\.*" | fzf)
   if [[ -n "$selected_file" ]]; then
-    echo "$selected_file"
-  fi
-}
-
-# cheat - Obtiene un cheatsheet de comandos
-cheat() {
-  curl cheat.sh/$1
-}
-
-# extract - Extrae cualquier archivo comprimido automáticamente
-extract() {
-  if [ -f $1 ]; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1     ;;
-      *.tar.gz)    tar xzf $1     ;;
-      *.bz2)       bunzip2 $1     ;;
-      *.rar)       unrar e $1     ;;
-      *.gz)        gunzip $1      ;;
-      *.tar)       tar xf $1      ;;
-      *.tbz2)      tar xjf $1     ;;
-      *.tgz)       tar xzf $1     ;;
-      *.zip)       unzip $1       ;;
-      *.Z)         uncompress $1  ;;
-      *.7z)        7z x $1        ;;
-      *)           echo "'$1' no se puede extraer" ;;
-    esac
-  else
-    echo "'$1' no es un archivo válido"
+    cd "$(dirname "$selected_file")"
   fi
 }
 
@@ -46,34 +19,56 @@ fhist() {
   fi
 }
 
+# extract - Extrae cualquier archivo comprimido automáticamente
+extract() {
+  if [ -f $1 ]; then
+    case $1 in
+    *.tar.bz2) tar xjf $1 ;;
+    *.tar.gz) tar xzf $1 ;;
+    *.bz2) bunzip2 $1 ;;
+    *.rar) unrar e $1 ;;
+    *.gz) gunzip $1 ;;
+    *.tar) tar xf $1 ;;
+    *.tbz2) tar xjf $1 ;;
+    *.tgz) tar xzf $1 ;;
+    *.zip) unzip $1 ;;
+    *.Z) uncompress $1 ;;
+    *.7z) 7z x $1 ;;
+    *) echo "'$1' no se puede extraer" ;;
+    esac
+  else
+    echo "'$1' no es un archivo válido"
+  fi
+}
+
 setConf() {
   local target_dir="$HOME/.config"
-  
+
   # Verificar si se proporcionaron argumentos
   if [ $# -eq 0 ]; then
     echo "Error: Debes proporcionar al menos un paquete"
     echo "Uso: setConf paquete1 [paquete2 ...]"
     return 1
   fi
-  
+
   # Procesar cada paquete recibido como argumento
   for package in "$@"; do
     # Eliminar la barra final si existe
     package=${package%/}
-    
+
     local source_dir="$(pwd)/$package"
-    
+
     # Verificar si el paquete existe
     if [ ! -d "$source_dir" ]; then
       echo "Error: El paquete '$package' no existe en el directorio actual"
       continue
     fi
-    
+
     echo "Creando enlace simbólico para '$package'..."
-    
+
     # Crear el enlace dentro de ~/.config/
     local target="$target_dir/$package"
-    
+
     # Si ya existe un enlace, actualizarlo
     if [ -e "$target" ]; then
       if [ -L "$target" ]; then
@@ -89,15 +84,11 @@ setConf() {
         rm -rf "$target"
       fi
     fi
-    
+
     # Crear el enlace simbólico
     ln -s "$source_dir" "$target"
     echo "Enlace creado: $target -> $source_dir"
   done
-  
-  echo "¡Completado!"
-}
 
-nboat() {
-  tmux split-pane -h \; resize-pane -x 250\; send -t 2 "newsboat -r" Enter\; send -t 1 "clear" Enter
+  echo "¡Completado!"
 }

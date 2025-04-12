@@ -21,11 +21,15 @@ alias grep='grep --color=auto'
 
 # Clipboard management
 alias clip='xclip -selection clipboard'
+#
 # Edit bashrc quickly
 alias bashrc='nvim ~/.bashrc'
 # Reload bashrc
 alias reload='source ~/.bashrc'
 alias vimrc='vim $VIMRC'
+
+## Confort
+alias n='nvim'
 
 ## Exports
 export EDITOR="nvim"
@@ -36,7 +40,7 @@ export DOTFILES="$HOME/Dotfiles/"
 export CONFIG="$HOME/.config/"
 export CAPTURAS="$HOME/Imagenes/Capturas/"
 
-export SECONDBRAIN="$HOME/SecondBrain"
+export SECONDBRAIN="$HOME/Documentos/SecondBrain"
 
 export SB_FUNC_PATH="$DOTFILES/bash/sb_functions"
 

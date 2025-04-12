@@ -1,155 +1,22 @@
-" designed for vim 8+
-if has("eval")                               " vim-tiny lacks 'eval'
-  let skip_defaults_vim = 1
-endif
+" Olvidar vi
 set nocompatible
-"#################### Vi Compatible (~/.exrc) #######################
-"
-" automatically indent new lines
-set autoindent " (alpine)
-" replace tabs with spaces automatically
-set expandtab " (alpine)
-" number of spaces to replace a tab with when expandtab
-set tabstop=2 " (alpine)
-" use case when searching
-set noignorecase
-" automatically write files when changing when multiple files open
-set autowrite
-" deactivate line numbers
-set nonumber
-" turn col and row position on in bottom right
-set ruler " see statusline for formatting
-" show command and insert mode
-set showmode
-"###################################################################
-" disable bell (also disable in .inputrc)
-set noerrorbells
-set visualbell
-set vb
-let mapleader=" "
-set softtabstop=2
-" mostly used with >> and 
-set shiftwidth=2
-set smartindent
-set smarttab
-if v:version >= 800
-  " stop vim from silently messing with files that it shouldn't
-  set nofixendofline
-  " better ascii friendly listchars
-  set listchars=space:*,trail:*,nbsp:*,extends:>,precedes:<,tab:\|>
-  " i hate automatic folding
-  set foldmethod=manual
-  set nofoldenable
-endif
-" enough for line numbers + gutter within 80 standard
-set textwidth=72
-" disable relative line numbers, remove no to sample it
-set norelativenumber
-" disable spellcapcheck
-" No existe `set spc=`, simplemente no usarlo si no se necesita.
-" more risky, but cleaner
-set nobackup
-set noswapfile
-set nowritebackup
-set icon
-" highlight search hits
-set hlsearch
-set incsearch
-set linebreak
-" avoid most of the 'Hit Enter ...' messages
-set shortmess=aoOtTI
-" prevents truncated yanks, deletes, etc.
-set viminfo='20,<1000,s1000
-" not a fan of bracket matching or folding
-if has("eval") " vim-tiny detection
-  let g:loaded_matchparen=1
-endif
-set noshowmatch
-" wrap around when searching
-set wrapscan
-set nowrap
-" Ajustes correctos para formato de texto
-set formatoptions-=t   " don't auto-wrap text using text width
-set formatoptions+=c   " autowrap comments using textwidth with leader
-set formatoptions-=r   " don't auto-insert comment leader on enter in insert
-set formatoptions-=o   " don't auto-insert comment leader on o/O in normal
-set formatoptions+=q   " allow formatting of comments with gq
-set formatoptions+=j   " delete comment prefix when joining
-set formatoptions+=l   " long lines not broken in insert mode
-set formatoptions+=m   " multi-byte character line break support
-set formatoptions+=M   " don't add space before or after multi-byte char
-set formatoptions+=1   " don't break a line after a one-letter word
-" stop complaints about switching buffer with changes
-set hidden
-" command history
-set history=100
-" here because plugins and stuff need it
-if has("syntax")
-  syntax enable
-endif
-" faster scrolling
-set ttyfast
-" vim-plug
-call plug#begin('~/.vim/plugged')
-Plug 'vimwiki/vimwiki'
-call plug#end()
-" allow sensing the filetype
+" Para tener colores bonitos
+ syntax enable
+" Poder instalar plugins
 filetype plugin on
-" Corrección aquí:
-syntax on
-" just one status line instead of two
-set laststatus=0
-" Corrección de ruf → statusline
-set statusline=%30(%=%#LineNr#%.50F\ [%{strlen(&ft)?&ft:'none'}]\ %l:%c\ %p%%%)
-let g:vimwiki_list = [{
-  \ 'path': '~/vimwiki/',
-  \ 'syntax': 'markdown',
-  \ 'ext': '.md',
-  \ 'template_path': '~/vimwiki/templates/',
-  \ 'template_default': 'default',
-  \ 'template_ext': '.md'
-  \ }]
 
-" Función para insertar template
-function! InsertWikiTemplate()
-  let template = "# " . expand('%:t:r') . "\n\n"
-  let template .= "**Tags:** #Todo\n"
-  let template .= "**MetaTags:** #ToTag #ToLink\n"
-  let template .= "- - -\n"
-  let template .= "\n"
-  let template .= "- - -\n"
-  let template .= "#### ***Sources:***\n"
-  call append(0, split(template, "\n"))
-endfunction
+" Puedes buscar archivos en los subdirectorios de tus subdirectorios(fzf - like)
+set path+=**
 
-" Atajo para crear nueva página con nombre personalizado y aplicar template
-nnoremap <Leader>wN :call CreateWikiPage()<CR>
+" Enseña todos los patrones coincidentes para Tab Completion 
+set wildmenu
 
-function! CreateWikiPage()
-  let title = input('Título de la nueva página: ')
-  if title != ''
-    execute 'edit ' . g:vimwiki_list[0].path . title . g:vimwiki_list[0].ext
-    call InsertWikiTemplate()
-  endif
-endfunction
-" Listar todas las notas
-nnoremap <Leader>wl :call ListAllNotes()<CR>
+" Para configurar busquedas semanticas (hay que tener ctags instalado)
+command! Maketags !ctags -R .
 
-function! ListAllNotes()
-  let path = "~/vimwiki/"
-  let files = glob(path . "**/*.md", 0, 1)
-  vnew
-  call setline(1, "# Listado de Notas")
-  call append(1, "")
-  let line = 2
-  for file in files
-    let filename = fnamemodify(file, ":t:r")
-    let link = "- [[" . filename . "]]"
-    call append(line, link)
-    let line += 1
-  endfor
-  setlocal buftype=nofile
-  setlocal bufhidden=hide
-  setlocal noswapfile
-  execute "normal! gg"
-endfunction
+" Para poder hacer como only y Tabonly
+command! BufOnly execute '%bd | e# | bd#'
+
+" para ver que tienes estas tecleando
+set showcmd
+

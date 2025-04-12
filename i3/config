@@ -19,6 +19,8 @@ gaps outer 2
 # hide_edge_borders both
 smart_gaps on
 
+# Para la velocidad de las teclas
+exec --no-startup-id xset r rate 250 100
 
 set $mod Mod4
 # set $mod Mod1
@@ -38,13 +40,10 @@ bindsym $mod+c exec --no-startup-id clipmenu
 bindsym Print exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S_selection.png' -s -e 'mv $f ~/Imagenes/Capturas/'
 # Captura de pantalla completa - Shift+Print
 bindsym Shift+Print exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Imagenes/Capturas/'
-# Captura de ventana activa - Alt+Print
-bindsym Mod1+Print exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S_window.png' -u -e 'mv $f ~/Imagenes/Capturas/'
 
 
 # # Para lockear la pantalla
 bindsym $mod+Shift+b exec i3lock
-
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
