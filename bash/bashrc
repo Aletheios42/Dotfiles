@@ -10,7 +10,47 @@
 #     . /etc/bash_completion
 # fi
 # Prompt minimalista y atractivo
-PS1='\[\e[0;36m\]\u\[\e[0m\] \[\e[0;32m\]\w\[\e[0m\] \[\e[0;35m\]>\[\e[0m\] '
+# PS1='\[\e[0;36m\]\u\[\e[0m\] \[\e[0;32m\]\w\[\e[0m\] \[\e[0;35m\]>\[\e[0m\] '
+function set_prompt {
+    local git_branch=""
+    local git_status=""
+    
+    # Comprueba si estamos en un repositorio Git
+    if git rev-parse --is-inside-work-tree &>/dev/null; then
+        git_branch=$(git rev-parse --abbrev-ref HEAD)
+        
+        # Comprobar cambios no sincronizados (archivos modificados sin commit)
+        if [ -n "$(git status --porcelain)" ]; then
+            git_status="\[\033[31m\]*\[\033[0m\]"  # Asterisco rojo para cambios sin commit
+        fi
+        
+        # Comprobar commits adelantados/atrasados respecto al remoto
+        local ahead=0
+        local behind=0
+        
+        if git rev-parse --abbrev-ref @{upstream} &>/dev/null; then
+            ahead=$(git rev-list --count "@{upstream}..HEAD" 2>/dev/null)
+            behind=$(git rev-list --count "HEAD..@{upstream}" 2>/dev/null)
+            
+            if [ "$ahead" -gt 0 ]; then
+                git_status="${git_status}\[\033[36m\]↑${ahead}\[\033[0m\]"  # Flecha azul para commits por empujar
+            fi
+            
+            if [ "$behind" -gt 0 ]; then
+                git_status="${git_status}\[\033[34m\]↓${behind}\[\033[0m\]"  # Flecha para commits por tirar
+            fi
+        fi
+        
+        git_info="\[\033[33m\]${git_branch}\[\033[0m\]${git_status} "
+    else
+        git_info=""
+    fi
+    
+    PS1='\[\033[36m\]\u\[\033[0m\] \[\033[32m\]\w\[\033[0m\] '"$git_info"'\[\033[35m\]>\[\033[0m\] '
+}
+
+PROMPT_COMMAND=set_prompt
+
 
 bind -x '"\C-p":clear'
 
