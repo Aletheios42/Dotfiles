@@ -21,6 +21,8 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+-- lua/config/lazy.lua
+require("config.commands")
 
 -- Setup lazy.nvim
 require("lazy").setup({

@@ -20,7 +20,7 @@ gaps outer 2
 smart_gaps on
 
 # Para la velocidad de las teclas
-exec --no-startup-id xset r rate 250 100
+exec --no-startup-id xset r rate 150 50
 
 set $mod Mod4
 # set $mod Mod1
@@ -34,13 +34,8 @@ exec --no-startup-id clipmenud
 bindsym $mod+c exec --no-startup-id clipmenu
 
 
-# Configuración de capturas de pantalla con scrot
-
-# Captura de área seleccionada - Print
-bindsym Print exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S_selection.png' -s -e 'mv $f ~/Imagenes/Capturas/'
-# Captura de pantalla completa - Shift+Print
-bindsym Shift+Print exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Imagenes/Capturas/'
-
+# Configuración de capturas de pantalla
+bindsym Print exec --no-startup-id $HOME/Dotfiles/bin/screen-capture.sh
 
 # # Para lockear la pantalla
 bindsym $mod+Shift+b exec i3lock
