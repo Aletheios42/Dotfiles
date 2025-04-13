@@ -214,9 +214,8 @@ bindsym $mod+r mode "resize"
 
 bar {
     status_command i3status -c ~/.config/i3statusbar/i3status.conf
-    position bottom
+    position top
 }
-
 set $rosewater #f5e0dc
 set $flamingo  #f2cdcd
 set $pink      #f5c2e7

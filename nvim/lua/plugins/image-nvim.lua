@@ -43,7 +43,7 @@ return {
           -- Make sure you have an html treesitter parser installed
           -- ~/github/dotfiles-latest/neovim/neobean/lua/plugins/treesitter.lua
           html = {
-            enabled = true,
+            enabled = false,
             only_render_image_at_cursor = true,
             -- Enabling "markdown" below allows you to view html images in .md files
             -- https://github.com/3rd/image.nvim/issues/234
