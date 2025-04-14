@@ -23,7 +23,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 -- lua/config/lazy.lua
 require("config.commands")
-
+require('config.options')
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {

@@ -75,15 +75,8 @@ bindsym $mod+Shift+q kill
 ## Dmenu para lanzr apps
 # Lanzar dmenu para aplicaciones (equivalente a rofi -show drun)
 bindsym $mod+d exec --no-startup-id "ls /usr/share/applications/*.desktop | xargs basename -s .desktop | sort | dmenu -i | xargs -I{} gtk-launch {}"
-# Menu combinado (equivalente a rofi -show combi)
-bindsym $mod+space exec --no-startup-id dmenu_run
-# Cambiar entre ventanas (equivalente a rofi -show window)
-bindsym $mod+Tab exec --no-startup-id 'wmctrl -l | awk "{$1=$2=$3=\"\"; print $0}" | sed "s/^[ \t]*//" | dmenu -i | xargs -I{} wmctrl -a {}'
 # Selector de emojis (equivalente a rofi -modi emoji)
 bindsym $mod+s exec --no-startup-id dmenu-emoji
-
-# Demonio de notificaciones
-exec --no-startup-id dunst
 
 # change focus
 bindsym $mod+h focus left

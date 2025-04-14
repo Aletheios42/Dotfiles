@@ -1,0 +1,124 @@
+#!/bin/bash
+
+# Find files (excluding hidden) with fzf
+zz() {
+  local selected_file
+  selected_file=$(find . -type f -not -path "*/\.*" | fzf)
+  if [[ -n "$selected_file" ]]; then
+    cd "$(dirname "$selected_file")"
+  fi
+}
+
+# Search command history with fzf (compatible with both bash and zsh)
+fhist() {
+  local cmd
+  if [[ -n "$ZSH_VERSION" ]]; then
+    # Zsh version
+    cmd=$(fc -l 1 | fzf --tac | sed 's/ *[0-9]*\** *//')
+  else
+    # Bash version
+    cmd=$(history | fzf --tac | sed 's/ *[0-9]* *//')
+  fi
+  
+  if [[ -n "$cmd" ]]; then
+    echo "$cmd"
+    eval "$cmd"
+  fi
+}
+
+# extract - Extrae cualquier archivo comprimido automáticamente
+extract() {
+  if [ -f $1 ]; then
+    case $1 in
+      *.tar.bz2) tar xjf $1 ;;
+      *.tar.gz) tar xzf $1 ;;
+      *.bz2) bunzip2 $1 ;;
+      *.rar) unrar e $1 ;;
+      *.gz) gunzip $1 ;;
+      *.tar) tar xf $1 ;;
+      *.tbz2) tar xjf $1 ;;
+      *.tgz) tar xzf $1 ;;
+      *.zip) unzip $1 ;;
+      *.Z) uncompress $1 ;;
+      *.7z) 7z x $1 ;;
+      *) echo "'$1' no se puede extraer" ;;
+    esac
+  else
+    echo "'$1' no es un archivo válido"
+  fi
+}
+
+function sb {
+  cd "$SECONDBRAIN" || return
+  nvim .
+}
+
+function set_prompt_bash {
+  local git_branch=""
+  local git_status=""
+
+  # Comprueba si estamos en un repositorio Git
+  if git rev-parse --is-inside-work-tree &>/dev/null; then
+    git_branch=$(git rev-parse --abbrev-ref HEAD)
+
+    # Comprobar cambios no sincronizados (archivos modificados sin commit)
+    if [ -n "$(git status --porcelain)" ]; then
+      git_status="\[\033[31m\]*\[\033[0m\]"  # Asterisco rojo para cambios sin commit
+    fi
+
+    # Comprobar commits adelantados/atrasados respecto al remoto
+    local ahead=0
+    local behind=0
+
+    if git rev-parse --abbrev-ref @{upstream} &>/dev/null; then
+      ahead=$(git rev-list --count "@{upstream}..HEAD" 2>/dev/null)
+      behind=$(git rev-list --count "HEAD..@{upstream}" 2>/dev/null)
+
+      if [ "$ahead" -gt 0 ]; then
+        git_status="${git_status}\[\033[36m\]↑${ahead}\[\033[0m\]"  # Flecha azul para commits por empujar
+      fi
+
+      if [ "$behind" -gt 0 ]; then
+        git_status="${git_status}\[\033[34m\]↓${behind}\[\033[0m\]"  # Flecha para commits por tirar
+      fi
+    fi
+
+    git_info="\[\033[33m\]${git_branch}\[\033[0m\]${git_status} "
+  else
+    git_info=""
+  fi
+
+  PS1='\[\033[36m\]\u\[\033[0m\] \[\033[0;32m\]\w\[\033[0m\] '"$git_info"'\[\033[35m\]>\[\033[0m\] '
+}
+
+function set_prompt_zsh {
+  local git_branch=""
+  local git_status=""
+  local git_info=""
+  
+  if git rev-parse --is-inside-work-tree &>/dev/null; then
+    git_branch=$(git rev-parse --abbrev-ref HEAD)
+    
+    if [ -n "$(git status --porcelain)" ]; then
+      git_status="%F{red}*%f"
+    fi
+    
+    if git rev-parse --abbrev-ref @{upstream} &>/dev/null; then
+      local ahead=$(git rev-list --count "@{upstream}..HEAD" 2>/dev/null)
+      local behind=$(git rev-list --count "HEAD..@{upstream}" 2>/dev/null)
+      
+      if [ "$ahead" -gt 0 ]; then
+        git_status="${git_status}%F{cyan}↑${ahead}%f"
+      fi
+      
+      if [ "$behind" -gt 0 ]; then
+        git_status="${git_status}%F{blue}↓${behind}%f"
+      fi
+    fi
+    
+    git_info="%F{yellow}${git_branch}%f${git_status} "
+  fi
+  
+  PROMPT="%F{cyan}%n%f %F{green}%~%f ${git_info}%F{magenta}>%f "
+}
+

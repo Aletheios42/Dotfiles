@@ -2,18 +2,12 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- numeros al lado
+vim.opt.number = true
+vim.opt.relativenumber = true
 
--- lua/config/options.lua
-vim.opt.syntax = "ON"
--- lua/config/options.lua
-vim.opt.filetypeplugin = "ON"
-vim.opt.filetypeindent = "ON" -- Opcional: para la indentación automática basada en el tipo de archivo
+vim.opt.path:append "**" -- Para que la búsqueda de archivos incluya subdirectorios
 
--- lua/config/options.lua
-vim.opt.path:append "**"
+vim.opt.wildmenu = true -- Activa el menú desplegable para autocompletar comandos
 
--- lua/config/options.lua
-vim.opt.wildmenu = true
-
--- lua/config/options.lua
-vim.opt.showcmd = true
+vim.opt.showcmd = true -- Muestra el comando que estás escribiendo en la parte inferior

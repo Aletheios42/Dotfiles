@@ -3,5 +3,5 @@
 -- Add any additional keymaps here
 
 
-vim.g.lazyvim_check_order = false
+-- vim.g.lazyvim_check_order = false
 

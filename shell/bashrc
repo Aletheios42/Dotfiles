@@ -1,0 +1,60 @@
+# ~/.bashrc
+#
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Cargar bash-completion si existe
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+PROMPT_COMMAND=set_prompt_bash
+
+# enable zsh vi-mode
+set -o vi
+
+bind 'set bell-style none'
+bind -x '"\C-p":clear'
+
+## ALIAS
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+# Clipboard management
+alias clip='xclip -selection clipboard'
+#
+# Edit bashrc quickly
+alias bashrc='nvim ~/.bashrc'
+alias zshrc='nvim ~/.zshrc'
+# Reload bashrc
+alias reload='source ~/.bashrc'
+
+## Confort
+alias n='nvim'
+
+## Exports
+export EDITOR="nvim"
+
+## PATH
+export DOTFILES="$HOME/Dotfiles/"
+export CONFIG="$HOME/.config/"
+export CAPTURAS="$HOME/Imagenes/Capturas/"
+
+export SECONDBRAIN="$HOME/Documentos/SecondBrain/"
+
+export SB_FUNC_PATH="$DOTFILES/bash/sb_functions"
+
+export GITHUB="https://github.com/Aletheios42"
+export DOCKERHUB="https://hub.docker.com/repositories/alejandropintosdev"
+
+
+# General bash functions
+export SHELL_FUNC_PATH="$DOTFILES/shell/shell_functions"
+
+# Load general functions
+if [ -f "$SHELL_FUNC_PATH" ]; then
+  source "$SHELL_FUNC_PATH"
+fi

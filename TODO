@@ -1,9 +1,6 @@
 ### NVIM
-- añadir la config de vimWki, con scripts apropiedos
-- nvim zenmode para lectura
 - mejorar imagenes en el nvim
 - Crear snipets con .skeleton para tener templates con lenguajes
-- comprobar si LSP vs en ^c ins-completions 
 - DAP vs gdb (https://www.youtube.com/watch?v=XA2WjJbmmoM&t=629s 56:53)
 
 ### Devcontainers
@@ -19,9 +16,5 @@
 - "Show my keys" para enseñar las teclas que pulso cuando me grabo
 - Mejorar es script de grabar
 
-
 ### Browser
 Meter el quetebrower
-
-
-

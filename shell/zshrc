@@ -1,0 +1,95 @@
+# ~/.zshrc
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+## Exports
+export EDITOR="nvim"
+
+## PATH
+export DOTFILES="$HOME/Dotfiles/"
+export CONFIG="$HOME/.config/"
+export CAPTURAS="$HOME/Imagenes/Capturas/"
+
+export SECONDBRAIN="$HOME/Documentos/SecondBrain"
+
+export SB_FUNC_PATH="$DOTFILES/bash/sb_functions" # Ojo con las funciones específicas de Bash
+
+export GITHUB="https://github.com/Aletheios42"
+export DOCKERHUB="https://hub.docker.com/repositories/alejandropintosdev"
+
+# Define la ubicación de tu archivo de funciones de shell (ajústala si es diferente)
+export SHELL_FUNC_PATH="$DOTFILES/shell/shell_functions"
+
+# Carga las funciones de shell
+if [[ -f "$SHELL_FUNC_PATH" ]]; then
+  source "$SHELL_FUNC_PATH"
+fi
+
+precmd() { set_prompt_zsh }
+
+# enable zsh vi-mode
+bindkey -v
+export KEYTIMEOUT=1 # make switching between modes faster
+
+# Deshabilitar beep
+unsetopt BEEP
+setopt NO_BEEP
+
+# Definir Ctrl+P para ejecutar el comando clear
+bindkey -s '^P' 'clear\n'
+
+## ALIAS
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+# Clipboard management
+alias clip='xclip -selection clipboard'
+#
+# Edit bashrc quickly
+alias bashrc='nvim ~/.bashrc'
+alias zshrc='nvim ~/.zshrc'
+# Reload zshrc
+alias reload='source ~/.zshrc'
+alias vimrc='vim $VIMRC'
+
+## Confort
+alias n='nvim'
+
+
+## Autocoompletado
+# Autocompletado básico
+autoload -Uz compinit
+compinit
+
+# Opciones de autocompletado
+setopt AUTO_MENU
+setopt COMPLETE_IN_WORD
+setopt ALWAYS_TO_END
+
+# Autocompletado con cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.zcompcache"
+
+# Formato y estilo del autocompletado
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Grupos en autocompletados
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' group-name ''
+
+# Completar comandos, archivos, etc.
+zstyle ':completion:*' completer _expand _complete _correct _approximate
