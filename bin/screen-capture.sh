@@ -45,7 +45,7 @@ if [ -f /tmp/screen_recording_pid ]; then
   stop_recording
 else
   # Menú de selección con dmenu
-  CHOICE=$(echo -e "Screenshot\nScreen Recording\nGIF Recording" | dmenu -p "Select action")
+  CHOICE=$(echo -e "Screenshot\nScreen Recording\n" | dmenu -p "Select action")
   
   case $CHOICE in
     "Screenshot")
@@ -53,10 +53,6 @@ else
       ;;
     "Screen Recording")
       record_screen
-      ;;
-    "GIF Recording")
-      OUTPUT="$VIDEO_DIR/$TIMESTAMP.gif"
-      peek
       ;;
   esac
 fi
