@@ -14,7 +14,7 @@
 
 for_window [class="^.*"] border pixel 2
 # gaps between windows
-gaps inner 4
+gaps inner 6
 gaps outer 2
 # hide_edge_borders both
 smart_gaps on

@@ -131,8 +131,8 @@ return {
     -- Reemplazar el keymapping original con la función personalizada
     vim.keymap.set("n", "<leader>on", create_note_with_template, { desc = "Nueva nota con plantilla" })
     vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", { desc = "Abrir en Obsidian" })
-    vim.keymap.set("n", "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Buscar nota" })
-    vim.keymap.set("n", "<leader>og", "<cmd>ObsidianSearch<CR>", { desc = "Búsqueda global" })
+    vim.keymap.set("n", "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Buscar nota fzf" })
+    vim.keymap.set("n", "<leader>og", "<cmd>ObsidianSearch<CR>", { desc = "Búsqueda global live grep" })
     vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Ver backlinks" })
     
     -- Añadir keymapping específico para seguir enlaces bajo el cursor

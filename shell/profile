@@ -15,3 +15,4 @@ export KEYTIMEOUT=1 # make switching between modes faster
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
   exec startx
 fi
+

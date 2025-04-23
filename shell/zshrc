@@ -57,6 +57,9 @@ alias vimrc='vim $VIMRC'
 ## Confort
 alias n='nvim'
 
+#zsh
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+ssh-add -q ~/.ssh/id_ed25519 2>/dev/null
 
 ## Autocoompletado
 # Autocompletado básico

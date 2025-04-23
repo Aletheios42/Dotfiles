@@ -22,14 +22,7 @@ return {
           markdown = {
             enabled = true,
             clear_in_insert_mode = false,
-            -- Set this to false if you don't want to render images coming from
-            -- a URL
             download_remote_images = true,
-            -- Change this if you would only like to render the image where the
-            -- cursor is at
-            -- I set this to true, because if the file has way too many images
-            -- it will be laggy and will take time for the initial load
-            -- only_render_image_at_cursor = true,
           },
           neorg = {
             enabled = true,
@@ -38,22 +31,11 @@ return {
             only_render_image_at_cursor = false,
             filetypes = { "norg" },
           },
-          -- This is disabled by default
-          -- Detect and render images referenced in HTML files
-          -- Make sure you have an html treesitter parser installed
-          -- ~/github/dotfiles-latest/neovim/neobean/lua/plugins/treesitter.lua
           html = {
             enabled = false,
             only_render_image_at_cursor = true,
-            -- Enabling "markdown" below allows you to view html images in .md files
-            -- https://github.com/3rd/image.nvim/issues/234
-            -- filetypes = { "html", "xhtml", "htm", "markdown" },
             filetypes = { "html", "xhtml", "htm" },
           },
-          -- This is disabled by default
-          -- Detect and render images referenced in CSS files
-          -- Make sure you have a css treesitter parser installed
-          -- ~/github/dotfiles-latest/neovim/neobean/lua/plugins/treesitter.lua
           css = {
             enabled = true,
           },
@@ -77,4 +59,16 @@ return {
       })
     end,
   },
+
+  -- https://github.com/HakonHarnes/img-clip.nvim
+  {
+      "HakonHarnes/img-clip.nvim",
+      event = "VeryLazy",
+      opts = {
+      },
+      keys = {
+          { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+      },
+  }
 }
+
