@@ -24,6 +24,7 @@ vim.g.maplocalleader = "\\"
 -- lua/config/lazy.lua
 require("config.commands")
 require('config.options')
+require('config.keymaps')
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
