@@ -50,7 +50,36 @@ alias grep='grep --color=auto'
 
 # Clipboard management
 alias clip='xclip -selection clipboard'
-#
+alias lscat='find . -type f \
+    -not -path "*/.git/*" \
+    -not -path "*/node_modules/*" \
+    -not -name "*.log" \
+    -not -name "*.sqlite" \
+    -not -name "*.db" \
+    -not -name "*.zip" \
+    -not -name "*.tar.gz" \
+    -not -name "*.rar" \
+    -not -name "*.png" \
+    -not -name "*.jpg" \
+    -not -name "*.jpeg" \
+    -not -name "*.gif" \
+    -not -name "*.bmp" \
+    -not -name "*.svg" \
+    -not -name "*.ico" \
+    -not -name "*.mp3" \
+    -not -name "*.mp4" \
+    -not -name "*.avi" \
+    -not -name "*.mov" \
+    -not -name "*.pdf" \
+    -not -name "*.doc" \
+    -not -name "*.docx" \
+    -not -name "*.xls" \
+    -not -name "*.xlsx" \
+    -not -name "*.ppt" \
+    -not -name "*.pptx" \
+    -exec echo "--- Archivo: {} ---" \; \
+    -exec cat "{}" \;'
+
 # Edit bashrc quickly
 alias bashrc='nvim ~/.bashrc'
 alias zshrc='nvim ~/.zshrc'
@@ -60,7 +89,7 @@ alias vimrc='vim $VIMRC'
 
 ## Confort
 alias n='nvim'
-
+alias chao='sudo pacman -Syu --noconfirm && shutdown now'
 #zsh
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 ssh-add -q ~/.ssh/id_ed25519 2>/dev/null

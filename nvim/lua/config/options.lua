@@ -18,6 +18,8 @@ vim.opt.shiftwidth = 4
 
 vim.opt.clipboard = "unnamedplus"
 
+-- mantiene el cursor en el centro un poco cuestionable ya que
+-- porque se puede remapear la navegacion vertical apendizando zz
 vim.opt.scrolloff = 999
 vim.opt.virtualedit = "block"
 
@@ -31,7 +33,7 @@ vim.opt.termguicolors = true
 vim.g.mapleader = " "
 
 
--- Para que la búsqueda de archivos incluya subdirectorios
+-- Para que el modo ex incluya archivos en subdirectoririos, genial con find para la búsqueda de archivos
 vim.opt.path:append "**" 
 -- Muestra el comando que estás escribiendo en la parte inferior derecha
 vim.opt.showcmd = true 

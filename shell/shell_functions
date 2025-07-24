@@ -1,11 +1,18 @@
 #!/bin/bash
 
-# Find files (excluding hidden) with fzf
 zz() {
   local selected_file
-  selected_file=$(find . -type f -not -path "*/\.*" | fzf)
-  if [[ -n "$selected_file" ]]; then
-    cd "$(dirname "$selected_file")"
+  selected_file=$(find ~ \( -type f -o -type d \) -not -path '*/\.*' 2>/dev/null | fzf --height 40% --reverse --prompt="Selecciona: ")
+  
+  if [[ -z "$selected_file" ]]; then
+    # El usuario canceló FZF
+    return 0
+  fi
+
+  if [[ -f "$selected_file" ]]; then
+    cd -- "$(dirname "$selected_file")" || return 1
+  elif [[ -d "$selected_file" ]]; then
+    cd -- "$selected_file" || return 1
   fi
 }
 
@@ -122,3 +129,96 @@ function set_prompt_zsh {
   PROMPT="%F{cyan}%n%f %F{green}%~%f ${git_info}%F{magenta}>%f "
 }
 
+clean_space() {
+    set -x
+    echo 'Limpiando caché de pacman (últimas 3 versiones)...'
+    if ! command -v paccache &>/dev/null; then
+        echo 'paccache no encontrado, omitiendo limpieza de caché de pacman.'
+    else
+        sudo paccache -r -k3 || echo 'Error limpiando caché de pacman, continuando...'
+    fi
+
+    echo 'Eliminando paquetes huérfanos...'
+    orphan_pkgs=$(pacman -Qtdq 2>/dev/null)
+    if [[ -n "$orphan_pkgs" ]]; then
+        sudo pacman -Rns --noconfirm $orphan_pkgs || echo 'Error eliminando paquetes huérfanos, continuando...'
+    else
+        echo 'No hay paquetes huérfanos para eliminar.'
+    fi
+
+    echo 'Limpiando imágenes y contenedores Docker no usados...'
+    if command -v docker &>/dev/null; then
+        sudo docker system prune -af || echo 'Error limpiando Docker, continuando...'
+    else
+        echo 'Docker no instalado, omitiendo limpieza de Docker.'
+    fi
+
+    echo 'Limpiando logs de journalctl (dejando 2 días)...'
+    sudo journalctl --vacuum-time=2d || echo 'Error limpiando journalctl, continuando...'
+
+    echo 'Limpiando /tmp y caches temporales de usuarios...'
+    sudo rm -rf /tmp/* || echo 'Error borrando /tmp, continuando...'
+    rm -rf ~/.cache/* || echo 'Error borrando cache de usuario, continuando...'
+    sudo rm -rf /root/.cache/* || echo 'Error borrando cache root, continuando...'
+
+    echo 'Resumen de uso de espacio (top directorios)...'
+    sudo du -xh / --max-depth=1 2>/dev/null | sort -hr | head -20
+
+    echo 'Limpieza completada.'
+    set +x
+}
+
+mostrar_contenidos() {
+    local directorios=()
+    local ignorar=""
+    local flag_ignorar=false
+
+    # Procesar argumentos
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -i)
+                flag_ignorar=true
+                shift
+                if [[ $# -gt 0 ]]; then
+                    ignorar="$1"
+                    shift
+                else
+                    echo "Error: Falta el nombre del archivo a ignorar después de -i" >&2
+                    return 1
+                fi
+                ;;
+            *)
+                if [[ ! -d "$1" ]]; then
+                    echo "Error: $1 no es un directorio válido" >&2
+                    return 1
+                fi
+                directorios+=("$1")
+                shift
+                ;;
+        esac
+    done
+
+    # Validar directorios
+    if [[ ${#directorios[@]} -eq 0 ]]; then
+        echo "Error: Debes especificar al menos un directorio" >&2
+        return 1
+    fi
+
+    # Buscar archivos y mostrar contenido
+    for dir in "${directorios[@]}"; do
+        find "$dir" -type f -print0 | while IFS= read -r -d '' archivo; do
+            local nombre_archivo=$(basename "$archivo")
+            
+            # Verificar si se debe ignorar el archivo
+            if $flag_ignorar && [[ "$nombre_archivo" == "$ignorar" ]]; then
+                echo "Ignorando: $archivo" >&2
+                continue
+            fi
+            
+            # Mostrar encabezado y contenido
+            echo "=== Archivo: $archivo ==="
+            cat -- "$archivo"
+            echo # Línea en blanco entre archivos
+        done
+    done
+}

@@ -3,6 +3,7 @@
 - añadir multicursor y leap (favs en github)
 - Crear snipets con .skeleton para tener templates con lenguajes
 - DAP vs gdb (https://www.youtube.com/watch?v=XA2WjJbmmoM&t=629s 56:53)
+- Cambair los goto... y los problemas del lsp.. reformular el mapeo de "<leader>l"
 
 ### Devcontainers
 - dotfiles AzureLab
@@ -16,4 +17,4 @@
 ### Browser
 Meter el quetebrower
 
-arreglar el promot de git cuando se crea y todavia no hay ningun commit
+- Quitar mi promp personalizado y poner uno ya hecho
