@@ -206,19 +206,37 @@ mostrar_contenidos() {
 
     # Buscar archivos y mostrar contenido
     for dir in "${directorios[@]}"; do
-        find "$dir" -type f -print0 | while IFS= read -r -d '' archivo; do
+        find "$dir" \( \
+            -path "*/.git" -o \
+            -path "*/node_modules" -o \
+            -path "*/__pycache__" -o \
+            -path "*/.venv" -o \
+            -path "*/venv" -o \
+            -path "*/env" -o \
+            -path "*/.env" -o \
+            -path "*/.mypy_cache" -o \
+            -path "*/.tox" -o \
+            -path "*/build" -o \
+            -path "*/dist" -o \
+            -path "*/.eggs" -o \
+            -path "*/.idea" -o \
+            -path "*/.vscode" -o \
+            -path "*/.target" -o \
+            -path "*/.cache" \
+        \) -prune -o -type f -print0 | while IFS= read -r -d '' archivo; do
             local nombre_archivo=$(basename "$archivo")
-            
+
             # Verificar si se debe ignorar el archivo
             if $flag_ignorar && [[ "$nombre_archivo" == "$ignorar" ]]; then
                 echo "Ignorando: $archivo" >&2
                 continue
             fi
-            
+
             # Mostrar encabezado y contenido
             echo "=== Archivo: $archivo ==="
             cat -- "$archivo"
-            echo # Línea en blanco entre archivos
+            echo
         done
     done
 }
+

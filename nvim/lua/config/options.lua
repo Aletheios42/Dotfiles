@@ -34,7 +34,12 @@ vim.g.mapleader = " "
 
 
 -- Para que el modo ex incluya archivos en subdirectoririos, genial con find para la búsqueda de archivos
-vim.opt.path:append "**" 
+vim.opt.path:append "**"
 -- Muestra el comando que estás escribiendo en la parte inferior derecha
-vim.opt.showcmd = true 
+vim.opt.showcmd = true
 
+-- Setup diagnostigs
+vim.diagnostic.config({
+    -- virtual_text = true,
+    virtual_lines = true,
+})
