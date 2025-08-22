@@ -58,3 +58,4 @@ export SHELL_FUNC_PATH="$DOTFILES/shell/shell_functions"
 if [ -f "$SHELL_FUNC_PATH" ]; then
   source "$SHELL_FUNC_PATH"
 fi
+. "$HOME/.cargo/env"

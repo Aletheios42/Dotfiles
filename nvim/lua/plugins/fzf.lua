@@ -3,12 +3,12 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     local fzf = require("fzf-lua")
-    
+
     -- Configuración básica
     fzf.setup({
       -- Opciones globales aquí si las necesitas
     })
-    
+
     -- Keymappings
     local map = vim.keymap.set
 -- Búsqueda de archivos
