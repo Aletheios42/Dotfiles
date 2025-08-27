@@ -1,8 +1,6 @@
 ### NVIM
-- mejorar imagenes en el nvim, y añadir el clip
-- añadir multicursor y leap (favs en github)
+- leap (favs en github)
 - Crear snipets con .skeleton para tener templates con lenguajes
-- DAP vs gdb (https://www.youtube.com/watch?v=XA2WjJbmmoM&t=629s 56:53)
 - Cambair los goto... y los problemas del lsp.. reformular el mapeo de "<leader>l"
 
 ### Devcontainers

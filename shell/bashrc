@@ -43,9 +43,9 @@ export DOTFILES="$HOME/Dotfiles/"
 export CONFIG="$HOME/.config/"
 export CAPTURAS="$HOME/Imagenes/Capturas/"
 
-export SECONDBRAIN="$HOME/Documentos/SecondBrain/"
+export SECONDBRAIN="$HOME/Documentos/SegundoCerebro/"
 
-export SB_FUNC_PATH="$DOTFILES/bash/sb_functions"
+export SB_FUNC_PATH="$DOTFILES/shell/sb_functions"
 
 export GITHUB="https://github.com/Aletheios42"
 export DOCKERHUB="https://hub.docker.com/repositories/alejandropintosdev"

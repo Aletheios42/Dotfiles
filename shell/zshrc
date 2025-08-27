@@ -11,8 +11,8 @@ export DOTFILES="$HOME/Dotfiles/"
 export CONFIG="$HOME/.config/"
 export CAPTURAS="$HOME/Imagenes/Capturas/"
 
-export SECONDBRAIN="$HOME/Documentos/SecondBrain"
-export BIBLIOTECA="$HOME/Documentos/Biblioteca/Calibre"
+export SEGUNDOCEREBRO="$HOME/Documentos/SegundoCerebro"
+export BIBLIOTECA="$HOME/Documentos/Biblioteca"
 
 export SB_FUNC_PATH="$DOTFILES/bash/sb_functions" # Ojo con las funciones específicas de Bash
 
@@ -21,9 +21,6 @@ export DOCKERHUB="https://hub.docker.com/repositories/alejandropintosdev"
 
 # Define la ubicación de tu archivo de funciones de shell (ajústala si es diferente)
 export SHELL_FUNC_PATH="$DOTFILES/shell/shell_functions"
-
-#Para conectarme a los laboratorios por ssh
-export PATH=$PATH:/home/aletheios/.iximiuz/labctl/bin
 
 # Carga las funciones de shell
 if [[ -f "$SHELL_FUNC_PATH" ]]; then
@@ -98,9 +95,6 @@ ssh-add -q ~/.ssh/id_ed25519 2>/dev/null
 # Autocompletado básico
 autoload -Uz compinit
 compinit
-
-## iximiuz completion
-source <(labctl completion zsh)
 
 
 # Opciones de autocompletado

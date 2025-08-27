@@ -18,8 +18,8 @@ return {
                         node_incremental = "<leader>si",
                         scope_incremental = "<leader>sc",
                         node_decremental = "<leader>sd",
-                    },
-                },
+                    }
+               },
                 -- https://github.com/cyclotruc/gitingest mirar mas movimientos move, swap....
                 textobjects = {
                     select = {
