@@ -1,11 +1,6 @@
 ### NVIM
 - leap (favs en github)
-- Crear snipets con .skeleton para tener templates con lenguajes
 - Cambair los goto... y los problemas del lsp.. reformular el mapeo de "<leader>l"
-
-### Devcontainers
-- dotfiles AzureLab
-- dotfiles HomeLab
 
 ### Influencer
 - Mejorar drasticamente mi config de obs
@@ -15,4 +10,5 @@
 ### Browser
 Meter el quetebrower
 
+## zsh
 - Quitar mi promp personalizado y poner uno ya hecho

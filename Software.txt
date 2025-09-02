@@ -1,0 +1,27 @@
+nvim
+vim
+git
+zsh
+kitty
+iwctl
+ranger
+i3
+picom
+brave
+grayjack
+obsdian
+obs
+zathura
+pandoc
+typist
+virtual box
+qemu
+postman
+whatie
+telegram
+slack
+discord
+docker
+ollama
+ollama Completions
+bitwarden

@@ -91,6 +91,8 @@ alias chao='sudo pacman -Syu --noconfirm && shutdown now'
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 ssh-add -q ~/.ssh/id_ed25519 2>/dev/null
 
+fpath=($HOME/.zsh_completions $fpath)
+
 ## Autocoompletado
 # Autocompletado básico
 autoload -Uz compinit
@@ -127,3 +129,4 @@ zstyle ':completion:*' group-name ''
 
 # Completar comandos, archivos, etc.
 zstyle ':completion:*' completer _expand _complete _correct _approximate
+
