@@ -1,0 +1,171 @@
+# Configuración básica de Sway en español
+
+### Dispositivo de entrada
+input * {
+    xkb_layout es
+}
+
+## FONDO DE PANTALLA
+output * bg /home/aletheios/Imágenes/Piedad.jpg fill
+
+# =========================================
+# Configuración de Touchpad y Teclado para Sway
+# =========================================
+# Antes de usar, puedes listar los dispositivos con:
+#   swaymsg -t get_inputs
+# y reemplazar los nombres según tu hardware.
+
+# =============================
+# Touchpad
+# =============================
+# Velocidad del puntero:
+#   0 = lento, 1 = rápido (puedes ajustar más allá de 1 si quieres)
+# Natural scroll: desplazamiento “a la mac”
+input "Raydium_Corporation_Raydium_Touch_System" {
+    accel_profile adaptive
+    pointer_accel 1.0
+    natural_scroll enabled
+}
+
+# =============================
+# Teclado
+# =============================
+# repeat_delay: tiempo (ms) antes de que una tecla empiece a repetirse
+# repeat_rate: número de repeticiones por segundo (mayor = más rápido)
+input "AT_Translated_Set_2_keyboard" {
+    repeat_delay 200
+    repeat_rate 40
+}
+
+
+#=================================#
+# Keyboard Shortcuts (Workspaces) #
+#=================================#
+# Switch to workspace
+set $ws1 "1 - Navegador"
+set $ws2 "2 - Terminal"
+set $ws3 "3 - Segundo Cerebro"
+set $ws4 "4 - Comunicación"
+set $ws5 "5 - Musica"
+set $ws6 "6 - Grabación"
+set $ws7 "7 - Miscelanea 1"
+set $ws8 "8 - Miscelanea 2"
+set $ws9 "9 - Miscelanea 3"
+
+### Terminal por defecto
+set $term kitty
+
+### Tecla modificadora principal (Mod4 = tecla Super/Windows)
+set $mod Mod4
+
+### Lanzar terminal
+bindsym $mod+Return exec $term
+
+bindsym $mod+d exec dmenu_run
+
+### Cerrar ventana
+bindsym $mod+Shift+q kill
+
+# Set the ALT key to $alt (since Mod1 is harder to remember):
+set $alt Mod1
+
+# Set up a shortcut to reload this config file:
+bindsym $mod+Shift+c reload
+
+# Quit your current session and return to the log-in manager/tty:
+bindsym $mod+Shift+e exec $HOME/.config/sway/exit.sh
+
+# Screen locking (automatic, with a timeout)
+set $lock swaylock -c 550000
+exec swayidle -w \
+    timeout 600 $lock \
+    timeout 570 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep $lock
+
+# Screen locking (manual)
+set $lock_screen exec bash ~/.config/sway/lock_screen.sh
+bindsym $mod+Escape exec $lock_screen
+
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+f floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+tab focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+#===============================#
+# Keyboard Shortcuts (Hardware) #
+#===============================#
+# Audio
+bindsym XF86AudioRaiseVolume exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+; pkill -RTMIN+8 waybar"
+bindsym XF86AudioLowerVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; pkill -RTMIN+8 waybar"
+bindsym XF86AudioMute exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+8 waybar"
+
+# Brightness
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+
+### Mover foco entre ventanas
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+### Mover ventanas
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Definir workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+# Cambiar a workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+# Mover ventana activa a workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+
+# ===============================
+# Barra (Waybar)
+# ===============================
+exec_always waybar

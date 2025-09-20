@@ -11,9 +11,15 @@ export HISTFILESIZE=10000
 export HISTCONTROL=ignoreboth
 export KEYTIMEOUT=1 # make switching between modes faster
 
-# Auto-start X if logging in on TTY1
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
-  exec startx
+# Auto-start display server if logging in on TTY1
+if [[ -z "$DISPLAY" ]] && [[ -z "$WAYLAND_DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
+  # Detectar Wayland e iniciar sway
+  if command -v sway >/dev/null ; then
+    exec sway
+  # Detectar X11 e iniciar i3 
+  elif command -v startx >/dev/null ; then
+    exec startx
+  else
+    echo "No se encontró ni sway ni i3"
+  fi
 fi
-
-. "$HOME/.cargo/env"

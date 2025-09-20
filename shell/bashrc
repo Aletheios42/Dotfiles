@@ -1,7 +1,33 @@
 # ~/.bashrc
 #
-# If not running interactively, don't do anything
+# Si no está en modo interactivo, no hacer nada
 [[ $- != *i* ]] && return
+
+export DOTFILES="/home/aletheios/Documentos/Dotfiles"
+
+#### Variables de Entorno ####
+export SHELL_EXPORTS="$DOTFILES/shell/exports"
+if [[ -f "$SHELL_EXPORTS" ]]; then
+  source "$SHELL_EXPORTS"
+fi
+
+#### Alias ####
+export SHELL_ALIASES="$DOTFILES/shell/aliases"
+if [[ -f "$SHELL_ALIASES" ]]; then
+  source "$SHELL_ALIASES"
+fi
+
+#### Cargar Funciones de Shell ####
+export SHELL_FUNC_PATH="$DOTFILES/shell/functions"
+if [[ -f "$SHELL_FUNC_PATH" ]]; then
+  source "$SHELL_FUNC_PATH"
+fi
+
+#### Configuración de SSH ####
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+# Agregar clave SSH al agente
+ssh-add -q ~/.ssh/id_ed25519 2>/dev/null
+
 
 # Cargar bash-completion si existe
 if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -10,7 +36,6 @@ elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-PROMPT_COMMAND=set_prompt_bash
 
 # enable zsh vi-mode
 set -o vi
@@ -18,44 +43,4 @@ set -o vi
 bind 'set bell-style none'
 bind -x '"\C-p":clear'
 
-## ALIAS
-
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-
-# Clipboard management
-alias clip='xclip -selection clipboard'
-#
-# Edit bashrc quickly
-alias bashrc='nvim ~/.bashrc'
-alias zshrc='nvim ~/.zshrc'
-# Reload bashrc
-alias reload='source ~/.bashrc'
-
-## Confort
-alias n='nvim'
-
-## Exports
-export EDITOR="nvim"
-
-## PATH
-export DOTFILES="$HOME/Dotfiles/"
-export CONFIG="$HOME/.config/"
-export CAPTURAS="$HOME/Imagenes/Capturas/"
-
-export SECONDBRAIN="$HOME/Documentos/SegundoCerebro/"
-
-export SB_FUNC_PATH="$DOTFILES/shell/sb_functions"
-
-export GITHUB="https://github.com/Aletheios42"
-export DOCKERHUB="https://hub.docker.com/repositories/alejandropintosdev"
-
-
-# General bash functions
-export SHELL_FUNC_PATH="$DOTFILES/shell/shell_functions"
-
-# Load general functions
-if [ -f "$SHELL_FUNC_PATH" ]; then
-  source "$SHELL_FUNC_PATH"
-fi
-. "$HOME/.cargo/env"
+PROMPT_COMMAND=set_prompt_bash

@@ -33,6 +33,20 @@ fhist() {
   fi
 }
 
+# Recargar la configuracion de la shell
+reload_shell() {
+    case "$SHELL" in
+        */zsh)
+            source ~/.zshrc
+            ;;
+        */bash)
+            source ~/.bashrc
+            ;;
+        *)
+            echo "Shell no soportada: $SHELL"
+            ;;
+    esac
+}
 # extract - Extrae cualquier archivo comprimido automáticamente
 extract() {
   if [ -f $1 ]; then
@@ -56,7 +70,7 @@ extract() {
 }
 
 function sb {
-  cd "$SECONDBRAIN" || return
+  cd "$SEGUNDOCEREBRO" || return
   nvim .
 }
 

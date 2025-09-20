@@ -1,120 +1,69 @@
 # ~/.zshrc
 
-# If not running interactively, don't do anything
+# Si no está en modo interactivo, no hacer nada
 [[ $- != *i* ]] && return
 
-## Exports
-export EDITOR="nvim"
+export DOTFILES="/home/aletheios/Documentos/Dotfiles"
 
-## PATH
-export DOTFILES="$HOME/Dotfiles/"
-export CONFIG="$HOME/.config/"
-export CAPTURAS="$HOME/Imagenes/Capturas/"
+#### Variables de Entorno ####
+export SHELL_EXPORTS="$DOTFILES/shell/exports"
+if [[ -f "$SHELL_EXPORTS" ]]; then
+  source "$SHELL_EXPORTS"
+fi
 
-export SEGUNDOCEREBRO="$HOME/Documentos/SegundoCerebro"
-export BIBLIOTECA="$HOME/Documentos/Biblioteca"
+#### Alias ####
+export SHELL_ALIASES="$DOTFILES/shell/aliases"
+if [[ -f "$SHELL_ALIASES" ]]; then
+  source "$SHELL_ALIASES"
+fi
 
-export SB_FUNC_PATH="$DOTFILES/bash/sb_functions" # Ojo con las funciones específicas de Bash
-
-export GITHUB="https://github.com/Aletheios42"
-export DOCKERHUB="https://hub.docker.com/repositories/alejandropintosdev"
-
-# Define la ubicación de tu archivo de funciones de shell (ajústala si es diferente)
-export SHELL_FUNC_PATH="$DOTFILES/shell/shell_functions"
-
-# Carga las funciones de shell
+#### Cargar Funciones de Shell ####
+export SHELL_FUNC_PATH="$DOTFILES/shell/functions"
 if [[ -f "$SHELL_FUNC_PATH" ]]; then
   source "$SHELL_FUNC_PATH"
 fi
 
-precmd() { set_prompt_zsh }
+#### Configuración de SSH ####
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+# Agregar clave SSH al agente
+ssh-add -q ~/.ssh/id_ed25519 2>/dev/null
 
-# enable zsh vi-mode
+#### Configuración General de ZSH ####
+# Habilitar zsh vi-mode
 bindkey -v
-export KEYTIMEOUT=1 # make switching between modes faster
+export KEYTIMEOUT=1  # Hacer más rápido el cambio entre los modos insertar y normal
 
-# Deshabilitar beep
+# Deshabilitar el sonido de beep
 unsetopt BEEP
 setopt NO_BEEP
 
 # Definir Ctrl+P para ejecutar el comando clear
 bindkey -s '^P' 'clear\n'
 
-## ALIAS
+# Prompt personalizado
+precmd() { set_prompt_zsh }
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-
-# Clipboard management
-alias clip='xclip -selection clipboard'
-alias lscat='find . -type f \
-    -not -path "*/.git/*" \
-    -not -path "*/node_modules/*" \
-    -not -name "*.log" \
-    -not -name "*.sqlite" \
-    -not -name "*.db" \
-    -not -name "*.zip" \
-    -not -name "*.tar.gz" \
-    -not -name "*.rar" \
-    -not -name "*.png" \
-    -not -name "*.jpg" \
-    -not -name "*.jpeg" \
-    -not -name "*.gif" \
-    -not -name "*.bmp" \
-    -not -name "*.svg" \
-    -not -name "*.ico" \
-    -not -name "*.mp3" \
-    -not -name "*.mp4" \
-    -not -name "*.avi" \
-    -not -name "*.mov" \
-    -not -name "*.pdf" \
-    -not -name "*.doc" \
-    -not -name "*.docx" \
-    -not -name "*.xls" \
-    -not -name "*.xlsx" \
-    -not -name "*.ppt" \
-    -not -name "*.pptx" \
-    -exec echo "--- Archivo: {} ---" \; \
-    -exec cat "{}" \;'
-
-# Edit bashrc quickly
-alias bashrc='nvim ~/.bashrc'
-alias zshrc='nvim ~/.zshrc'
-# Reload zshrc
-alias reload='source ~/.zshrc'
-alias vimrc='vim $VIMRC'
-
-## Confort
-alias n='nvim'
-alias chao='sudo pacman -Syu --noconfirm && shutdown now'
-#zsh
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-ssh-add -q ~/.ssh/id_ed25519 2>/dev/null
-
-fpath=($HOME/.zsh_completions $fpath)
-
-## Autocoompletado
-# Autocompletado básico
+#### Autocompletado ####
+# Cargar el sistema de autocompletado
 autoload -Uz compinit
 compinit
 
-
-# Opciones de autocompletado
+# Opciones generales de autocompletado
 setopt AUTO_MENU
 setopt COMPLETE_IN_WORD
 setopt ALWAYS_TO_END
 
-# Autocompletado con cache
+# Autocompletado con caché
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$HOME/.zcompcache"
 
-# Formato y estilo del autocompletado
+# Estilos y formato del autocompletado
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-# Grupos en autocompletados
+# Configuración avanzada de autocompletado
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*:options' description 'yes'
@@ -129,4 +78,8 @@ zstyle ':completion:*' group-name ''
 
 # Completar comandos, archivos, etc.
 zstyle ':completion:*' completer _expand _complete _correct _approximate
+
+#### Autocompletado ZSH ####
+# Ruta de los completions adicionales
+fpath=($HOME/.zsh_completions $fpath)
 

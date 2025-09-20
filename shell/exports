@@ -1,0 +1,10 @@
+# $DOTFILES/exports
+export EDITOR="nvim"
+export CONFIG="$HOME/.config"
+export DOCUMENTOS="$HOME/Documentos"
+export CAPTURAS="$HOME/Imagenes/Capturas/"
+export SEGUNDOCEREBRO="$DOCUMENTOS/SegundoCerebro"
+export BIBLIOTECA="$DOCUMENTOS/Biblioteca"
+export GITHUB="https://github.com/Aletheios42"
+export DOCKERHUB="https://hub.docker.com/repositories/alejandropintosdev"
+export XDG_DATA_HOME="/home/aletheios/"
