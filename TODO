@@ -1,3 +1,4 @@
+# MIGRAR LA CONFIGURACION A CHEZMOI
 ### NVIM
 - leap (favs en github)
 - Cambair los goto... y los problemas del lsp.. reformular el mapeo de "<leader>l"
@@ -6,3 +7,6 @@
 - Mejorar drasticamente mi config de obs
 - "Show my keys" para enseñar las teclas que pulso cuando me grabo
 - Mejorar es script de grabar
+
+##
+cambiar el clip en funcion del display

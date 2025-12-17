@@ -1,15 +1,24 @@
 " Olvidar vi
-
 set nocompatible
 let skip_defaults_vim=1
 
+" colorscheme bonito
+colorscheme slate
+
 " Para tener colores bonitos
 syntax enable
+" formato bonito
+set colorcolumn=81
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+
 " Poder instalar plugins
 filetype plugin on
 
 " activa los numeros laterales
-set number
+set number relativenumber
+
+" hace que se vea destacada la linea del cursor
+set cursorline
 
 " tabs are the devil
 set expandtab
@@ -22,7 +31,6 @@ set autoindent
 
 " no apila las lineas largas
 set clipboard=unnamedplus
-
 
 " no bullshit, more risky, but cleaner
 set nobackup
@@ -52,7 +60,6 @@ set viminfo='20,<1000,s1000
 if $PLATFORM == 'mac'
   " required for mac delete to work
   set backspace=indent,eol,start
-
 endif
 
 " stop complaints about switching buffer with changes
@@ -60,7 +67,6 @@ set hidden
 
 " command history
 set history=100
-
 
 " Puedes buscar archivos en los subdirectorios de tus subdirectorios(fzf - like)
 set path+=**
@@ -71,6 +77,8 @@ set ttyfast
 " Enseña todos los patrones coincidentes para Tab Completion 
 set wildmenu
 
+" Quitar la campanita del deminio
+set belloff=all
 
 " not a fan of bracket matching or folding
 let g:loaded_matchparen=1
@@ -89,7 +97,6 @@ map <F11> :set hlsearch!<CR>
 map <F12> :set fdm=indent<CR>
 
 " Install vim-plug if not already installed
-" (Yes I know about Vim 8 Plugins. They suck.)
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

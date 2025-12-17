@@ -3,7 +3,7 @@
 # Si no está en modo interactivo, no hacer nada
 [[ $- != *i* ]] && return
 
-export DOTFILES="/home/aletheios/Documentos/Dotfiles"
+export DOTFILES="/home/$(USER)/Documentos/Dotfiles"
 
 #### Variables de Entorno ####
 export SHELL_EXPORTS="$DOTFILES/shell/exports"
@@ -25,22 +25,27 @@ fi
 
 #### Configuración de SSH ####
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-# Agregar clave SSH al agente
-ssh-add -q ~/.ssh/id_ed25519 2>/dev/null
 
+#### Configuración General de BASH ####
 
+# Habilitar zsh vi-mode
+set -o vi
+export KEYTIMEOUT=1  # Hacer más rápido el cambio entre los modos insertar y normal
+
+# Deshabilitar el sonido de beep
+bind 'set bell-style none'
+
+# Definir Ctrl+P para ejecutar el comando clear,
+# para evitar conflicto con navegacion tmux-nvim
+bind -x '"\C-p":clear'
+
+#Promt personalizado
+eval "$(starship init bash)"
+
+#### Autocompletado ####
 # Cargar bash-completion si existe
 if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
 elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
-
-
-# enable zsh vi-mode
-set -o vi
-
-bind 'set bell-style none'
-bind -x '"\C-p":clear'
-
-PROMPT_COMMAND=set_prompt_bash

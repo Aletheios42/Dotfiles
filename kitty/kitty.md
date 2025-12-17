@@ -51,12 +51,10 @@
 
 ### Shell integration
 
-
 | Action | Shortcut |
 | ------ | --------------- |
 | View output of last command | crtl+shift+g |
 | Prev/next prompt in scrollback | crtl+shift+z / crtl+shitft+x |
-
 
 
 ### Windows management
@@ -107,8 +105,6 @@
 - **scroll_page_down**: Scroll down by one page. Default shortcut: ctrl+shift+page_down
 - **scroll_page_up**: Scroll up by one page. Default shortcut: ctrl+shift+page_up
 
-
-
 ### Windows management
 
 - **close_other_windows_in_tab**: Close all windows in the tab other than the currently active window.
@@ -138,8 +134,6 @@
 - **scroll_to_mark**: Scroll to the next or previous mark of the specified type
 - **toggle_marker**: Toggle the current marker on/off
 - **create_marker**: Create a new marker
-
-
 
 ### Tab management
 

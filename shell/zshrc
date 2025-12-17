@@ -3,7 +3,7 @@
 # Si no está en modo interactivo, no hacer nada
 [[ $- != *i* ]] && return
 
-export DOTFILES="/home/aletheios/Documentos/Dotfiles"
+export DOTFILES="/home/$USER/Documentos/Dotfiles"
 
 #### Variables de Entorno ####
 export SHELL_EXPORTS="$DOTFILES/shell/exports"
@@ -25,10 +25,14 @@ fi
 
 #### Configuración de SSH ####
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-# Agregar clave SSH al agente
-ssh-add -q ~/.ssh/id_ed25519 2>/dev/null
 
 #### Configuración General de ZSH ####
+# Ofuscar el historial
+# mirar el HISTFILE
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS
+setopt SHARE_HISTORY
+
 # Habilitar zsh vi-mode
 bindkey -v
 export KEYTIMEOUT=1  # Hacer más rápido el cambio entre los modos insertar y normal
@@ -37,11 +41,13 @@ export KEYTIMEOUT=1  # Hacer más rápido el cambio entre los modos insertar y n
 unsetopt BEEP
 setopt NO_BEEP
 
-# Definir Ctrl+P para ejecutar el comando clear
+# Definir Ctrl+P para ejecutar el comando clear,
+# para evitar conflicto con navegacion tmux-nvim
 bindkey -s '^P' 'clear\n'
 
 # Prompt personalizado
-precmd() { set_prompt_zsh }
+# precmd() { set_prompt_zsh }
+eval "$(starship init zsh)"
 
 #### Autocompletado ####
 # Cargar el sistema de autocompletado

@@ -6,7 +6,7 @@ input * {
 }
 
 ## FONDO DE PANTALLA
-output * bg /home/aletheios/Imágenes/Piedad.jpg fill
+output * bg /home/$USER/.WallPaper.jpg fill
 
 # =========================================
 # Configuración de Touchpad y Teclado para Sway
@@ -61,7 +61,7 @@ set $mod Mod4
 ### Lanzar terminal
 bindsym $mod+Return exec $term
 
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec bemenu-run
 
 ### Cerrar ventana
 bindsym $mod+Shift+q kill

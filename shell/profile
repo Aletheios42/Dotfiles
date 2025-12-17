@@ -10,6 +10,12 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 export HISTCONTROL=ignoreboth
 export KEYTIMEOUT=1 # make switching between modes faster
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# Iniciar ssh-agent solo si no hay uno ya en ejecución
+if ! pgrep -u "$USER" ssh-agent >/dev/null 2>&1; then
+  eval "$(ssh-agent -s)"
+fi
 
 # Auto-start display server if logging in on TTY1
 if [[ -z "$DISPLAY" ]] && [[ -z "$WAYLAND_DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then

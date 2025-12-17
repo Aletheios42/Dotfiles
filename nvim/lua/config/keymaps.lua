@@ -8,7 +8,6 @@
 vim.keymap.set('n', '<Tab>', ':tabnext<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<S-Tab>', ':tabprevious<CR>', { noremap = true, silent = true })
 
-
 -- Buffer history navigation
 local bufhist = require("config.commands").buffer_history
 
