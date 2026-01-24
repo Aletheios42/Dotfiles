@@ -1,6 +1,7 @@
 # ~/.config/starship.toml
 # Inserts a blank line between shell prompts
 add_newline = false
+scan_timeout = 10
 
 [character] # The name of the module we are configuring is 'character'
 success_symbol = '[=>](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'

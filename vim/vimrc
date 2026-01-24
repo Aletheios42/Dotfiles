@@ -1,24 +1,13 @@
+let mapleader = " "
 " Olvidar vi
 set nocompatible
 let skip_defaults_vim=1
-
-" colorscheme bonito
-colorscheme slate
-
-" Para tener colores bonitos
-syntax enable
-" formato bonito
-set colorcolumn=81
+colorscheme slate " colorscheme bonito
+syntax enable " Para tener colores bonitos
+set colorcolumn=81 " formato bonito
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
-
-" Poder instalar plugins
-filetype plugin on
-
-" activa los numeros laterales
-set number relativenumber
-
-" hace que se vea destacada la linea del cursor
-set cursorline
+set number relativenumber " activa los numeros laterales
+set cursorline " hace que se vea destacada la linea del cursor
 
 " tabs are the devil
 set expandtab
@@ -29,32 +18,24 @@ set smartindent
 set smarttab
 set autoindent
 
-" no apila las lineas largas
-set clipboard=unnamedplus
+set clipboard=unnamedplus " no apila las lineas largas
 
-" no bullshit, more risky, but cleaner
-set nobackup
+set nobackup " no bullshit, more risky, but cleaner
 set noswapfile
 set nowritebackup
 
-" keep the terminal title updated
-set laststatus=0
+set laststatus=0 " keep the terminal title updated
 set icon
 
-" easier to see characters when `set paste` is on
-set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
+set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨ " easier to see characters when `set paste` is on
 
-" highlight search hits,  \+<cr> to clear 
-set hlsearch
+set hlsearch " highlight search hits,  \+<cr> to clear 
 set incsearch
 set linebreak
 map <silent> <leader><cr> :noh<cr>
 
-" avoid most of the 'Hit Enter ...' messages
-set shortmess=aoOtI
-
-" prevents truncated yanks, deletes, etc.
-set viminfo='20,<1000,s1000
+set shortmess=aoOtI " avoid most of the 'Hit Enter ...' messages
+set viminfo='20,<1000,s1000 " prevents truncated yanks, deletes, etc.
 
 " requires PLATFORM env variable set (in ~/.bashrc)
 if $PLATFORM == 'mac'
@@ -62,23 +43,13 @@ if $PLATFORM == 'mac'
   set backspace=indent,eol,start
 endif
 
-" stop complaints about switching buffer with changes
-set hidden
 
-" command history
-set history=100
-
-" Puedes buscar archivos en los subdirectorios de tus subdirectorios(fzf - like)
-set path+=**
-
-" faster scrolling
-set ttyfast
-
-" Enseña todos los patrones coincidentes para Tab Completion 
-set wildmenu
-
-" Quitar la campanita del deminio
-set belloff=all
+set hidden " stop complaints about switching buffer with changes
+set history=100 " command history
+set path+=** " Puedes buscar archivos en los subdirectorios de tus subdirectorios(fzf - like)
+set ttyfast " faster scrolling
+set wildmenu " Enseña todos los patrones coincidentes para Tab Completion 
+set belloff=all " Quitar la campanita del deminio
 
 " not a fan of bracket matching or folding
 let g:loaded_matchparen=1
@@ -96,6 +67,25 @@ map <F10> :set spell!<CR>
 map <F11> :set hlsearch!<CR>
 map <F12> :set fdm=indent<CR>
 
+" para los tab
+  "" Mapea Tab para ir a la siguiente pestaña
+nnoremap <Tab> :tabnext<CR>
+  "" Mapea Shift+Tab para ir a la pestaña anterior
+nnoremap <S-Tab> :tabprevious<CR>
+
+" fzf
+  "" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+ "" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+filetype plugin on " Poder instalar plugins
+
 " Install vim-plug if not already installed
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -103,8 +93,37 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
-" Initialize plugin system
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged') " Initialize plugin system
+
+" gutentags
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
+
+let g:gutentags_define_advanced_commands = 1
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_project_root = ['.root', '.git', '.hg', '.project']
+let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
+let g:gutentags_plus_nomap = 1 " Desactiva mapeos por defecto para usar los tuyos
+let g:gutentags_plus_switch = 1 " Cambiar foco a la ventana de resultados
+
+noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
+noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
+noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
+noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
+noremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>
+noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
+noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
+noremap <silent> <leader>gz :GscopeFind z <C-R><C-W><cr>
+
+" Tmux navigator
+Plug 'christoomey/vim-tmux-navigator'
+
+" fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " ## plugins LSP
 Plug 'prabirshrestha/vim-lsp'
@@ -129,6 +148,4 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 let g:lsp_diagnostics_echo_cursor = 1
-
-" Evita que los comentarios se expandan
- autocmd FileType * setlocal formatoptions-=r formatoptions-=o
+ autocmd FileType * setlocal formatoptions-=r formatoptions-=o " Evita que los comentarios se expandan

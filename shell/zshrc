@@ -26,6 +26,9 @@ fi
 #### Configuración de SSH ####
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+#### PATH Actualizado
+PATH=$PATH:/home/user/.local/bin
+
 #### Configuración General de ZSH ####
 # Ofuscar el historial
 # mirar el HISTFILE
@@ -88,4 +91,3 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 #### Autocompletado ZSH ####
 # Ruta de los completions adicionales
 fpath=($HOME/.zsh_completions $fpath)
-

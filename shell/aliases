@@ -12,6 +12,7 @@ alias n='nvim'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias clip='xclip -selection clipboard'
+
 alias lscat='find . -type f \
     -not -path "*/.git/*" \
     -not -path "*/node_modules/*" \
